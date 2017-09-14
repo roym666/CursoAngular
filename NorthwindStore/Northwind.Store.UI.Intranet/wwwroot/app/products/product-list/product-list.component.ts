@@ -51,28 +51,28 @@ export class ProductListComponent implements OnInit {
 
     }
 
-    post(): void {
+    //post(): void {
 
-        this.ps.createProduct(
-            {
-                productId: 0,
-                productName: "Demostración",
-                supplierId: null,
-                categoryId: null,
-                quantityPerUnit: "1",
-                unitPrice: 100,
-                unitsInStock: 1,
-                unitsOnOrder: 0,
-                reorderLevel: 0,
-                discontinued: false
-            })
-            .subscribe(product => {
-                this.product = product;
-                console.log(this.product);
-                console.log('Successfully create!');
-            },
-            error => this.errorMessage = <any>error);
-    }
+    //    this.ps.createProduct(
+    //        {
+    //            productId: 0,
+    //            productName: "Demostración",
+    //            supplierId: null,
+    //            categoryId: null,
+    //            quantityPerUnit: "1",
+    //            unitPrice: 100,
+    //            unitsInStock: 1,
+    //            unitsOnOrder: 0,
+    //            reorderLevel: 0,
+    //            discontinued: false
+    //        })
+    //        .subscribe(product => {
+    //            this.product = product;
+    //            console.log(this.product);
+    //            console.log('Successfully create!');
+    //        },
+    //        error => this.errorMessage = <any>error);
+    //}
 
     get(): void {
         this.ps.getProduct(this.product.productId)

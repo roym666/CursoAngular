@@ -54,6 +54,8 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
+                            <th>Category</th>
+                            <th>Supplier</th>
                             <th>quantityPerUnit</th>
                             <th>Price</th>
                             <th>Inventory</th>
@@ -65,6 +67,8 @@
                         <tr *ngFor="let p of products | async;">
                             <td>{{p.productId}}</td>
                             <td>{{p.productName}}</td>
+                            <td>{{p.categoryName}}</td>
+                            <td>{{p.supplierName}}</td>
                             <td>{{p.quantityPerUnit}}</td>
                             <td>{{p.unitPrice | currency:'USD':true}}</td>
                             <td>{{p.unitsInStock}}</td>

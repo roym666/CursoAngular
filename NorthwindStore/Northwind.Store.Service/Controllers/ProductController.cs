@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Northwind.Store.Data;
 using Northwind.Store.Model;
 using Linq.Extensions;
+using Northwind.Store.Service.DTO;
+using Northwind.Store.Service.Models;
 
 namespace Northwind.Store.Service.Controllers
 {
@@ -24,46 +26,63 @@ namespace Northwind.Store.Service.Controllers
 
         // GET: api/Product
         [HttpGet()]
-        public async Task<IEnumerable<Product>> GetProducts(string name = "")
+        public async Task<IEnumerable<ProductDTO>> GetProducts(string name = "")
         {
             return await _context.Products.Include(p => p.Category).Include(p => p.Supplier).
              Where(p => p.ProductName.Contains(name) || string.IsNullOrEmpty(name)).
-             AsNoTracking().ToListAsync();
+             AsNoTracking().Select(p => new ProductDTO()
+             {
+                 ProductId = p.ProductId,
+                 ProductName = p.ProductName,
+                 QuantityPerUnit = p.QuantityPerUnit,
+                 UnitPrice = p.UnitPrice,
+                 UnitsInStock = p.UnitsInStock,
+                 UnitsOnOrder = p.UnitsOnOrder,
+                 ReorderLevel = p.ReorderLevel,
+                 Discontinued = p.Discontinued,
+                 CategoryId = p.CategoryId,
+                 CategoryName = p.Category.CategoryName,
+                 SupplierId = p.SupplierId,
+                 SupplierName = p.Supplier.CompanyName
+
+             }).ToListAsync();
         }
 
         // GET: api/Product/5
+        [ApiValidationFilter]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProducts([FromRoute] int id)
         {
             await Task.Delay(1000);
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(new ApiBadRequestResponse(ModelState));
+            //}
 
-            var products = await _context.Products.Include(p => p.Category).Include( p=> p.Supplier).
+            var products = await _context.Products.Include(p => p.Category).Include(p => p.Supplier).
                 AsNoTracking().SingleOrDefaultAsync(m => m.ProductId == id);
 
             if (products == null)
             {
-                return NotFound();
+                return NotFound(new ApiResponse(System.Net.HttpStatusCode.NotFound, $"product not found with id{id}"));
             }
 
             return Ok(products);
         }
 
         // PUT: api/Product/5
+        [ApiValidationFilter]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProducts([FromRoute] int id, [FromBody] Product products)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
 
             if (id != products.ProductId)
             {
-                return BadRequest();
+                return BadRequest(new ApiResponse(System.Net.HttpStatusCode.BadRequest, $"product ids are different {id} != {products.ProductId}"));
             }
 
             _context.Entry(products).State = EntityState.Modified;
@@ -76,7 +95,7 @@ namespace Northwind.Store.Service.Controllers
             {
                 if (!ProductsExists(id))
                 {
-                    return NotFound();
+                    return NotFound(new ApiResponse(System.Net.HttpStatusCode.NotFound, $"product not found with id{id}"));
                 }
                 else
                 {
@@ -88,13 +107,14 @@ namespace Northwind.Store.Service.Controllers
         }
 
         // POST: api/Product
+        [ApiValidationFilter]
         [HttpPost]
         public async Task<IActionResult> PostProducts([FromBody] Product products)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(new ApiBadRequestResponse(ModelState));
+            //}
 
             _context.Products.Add(products);
             await _context.SaveChangesAsync();
@@ -103,18 +123,19 @@ namespace Northwind.Store.Service.Controllers
         }
 
         // DELETE: api/Product/5
+        [ApiValidationFilter]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProducts([FromRoute] int id)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
 
             var products = await _context.Products.SingleOrDefaultAsync(m => m.ProductId == id);
             if (products == null)
             {
-                return NotFound();
+                return NotFound(new ApiResponse(System.Net.HttpStatusCode.NotFound, $"product not found with id {id}"));
             }
 
             _context.Products.Remove(products);
