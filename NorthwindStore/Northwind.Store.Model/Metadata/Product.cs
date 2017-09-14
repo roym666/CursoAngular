@@ -7,6 +7,7 @@ namespace Northwind.Store.Model
     [ModelMetadataType(typeof(ProductMetadata))]
     public partial class Product : ModelBase
     {
+        [Required]
         [NotMapped]
         public byte[] Picture { get; set; }
 
