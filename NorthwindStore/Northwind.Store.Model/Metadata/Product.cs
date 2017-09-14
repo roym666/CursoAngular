@@ -7,7 +7,6 @@ namespace Northwind.Store.Model
     [ModelMetadataType(typeof(ProductMetadata))]
     public partial class Product : ModelBase
     {
-        [Required]
         [NotMapped]
         public byte[] Picture { get; set; }
 
@@ -24,7 +23,8 @@ namespace Northwind.Store.Model
 
         class ProductMetadata
         {
-
+            [Required(ErrorMessage = "El nombre del producto es requerido")]
+            public string ProductName { get; set; }
         }
     }
 }
