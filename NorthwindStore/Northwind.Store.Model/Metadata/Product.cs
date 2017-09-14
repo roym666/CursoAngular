@@ -23,7 +23,7 @@ namespace Northwind.Store.Model
 
         class ProductMetadata
         {
-            [Required(ErrorMessage = "El nombre del producto es requerido")]
+            [Required(ErrorMessage = "El nombre del producto es requerido"), MinLength(3, ErrorMessage = "se requiere al menos de {1} caracteres")]
             public string ProductName { get; set; }
         }
     }
