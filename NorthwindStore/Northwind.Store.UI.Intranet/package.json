@@ -1,0 +1,31 @@
+{
+    "name": "DotNet2AngularBase",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@angular/common": "~4.3.3",
+        "@angular/compiler": "~4.3.3",
+        "@angular/core": "~4.3.3",
+        "@angular/forms": "~4.3.3",
+        "@angular/http": "~4.3.3",
+        "@angular/platform-browser": "~4.3.3",
+        "@angular/platform-browser-dynamic": "~4.3.3",
+        "@angular/router": "~4.3.3",
+        "angular-in-memory-web-api": "~0.3.2",
+        "systemjs": "~0.20.17",
+        "core-js": "^2.4.1",
+        "rxjs": "^5.4.2",
+        "zone.js": "^0.8.16",
+        "tslib": "~1.7.1"
+    },
+    "devDependencies": {
+        "gulp": "^3.9.1"
+    }
+}

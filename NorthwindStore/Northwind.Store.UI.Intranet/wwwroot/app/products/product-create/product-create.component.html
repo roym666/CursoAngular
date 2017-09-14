@@ -1,0 +1,98 @@
+﻿<h1>Crear Producto</h1>
+<form class="form-horizontal"
+      novalidate
+      (ngSubmit)="save()"
+      [formGroup]="productForm">
+    <fieldset>
+        <div class="form-group" [ngClass]="{'has-error': isValid('productName') }">
+            <label class="col-md-2 control-label"
+                   for="firstNameId">Product Name</label>
+            <div class="col-md-8">
+                <input class="form-control"
+                       id="productNameId"
+                       type="text"
+                       placeholder="Product Name (requerido)"
+                       formControlName="productName" />
+                <span class="help-block" *ngIf="(productForm.get('productName').touched ||
+                                                         productForm.get('productName').dirty) &&
+                                                         productForm.get('productName').errors">
+                    <span *ngIf="productForm.get('productName').errors.required">
+                        El nombre del producto es requerido.
+                    </span>
+                    <span *ngIf="productForm.get('productName').errors.minlength">
+                        Al menos 3 caracteres.
+                    </span>
+                    <span *ngIf="productForm.get('productName').errors.maxlength">
+                        Se acepta un máximo de 20 caracteres.
+                    </span>
+                </span>
+            </div>
+        </div>
+        <div class="form-group" [ngClass]="{'has-error': isValid('supplierId') }">
+            <label class="col-md-2 control-label"
+                   for="supplierId">supplierId</label>
+
+            <div class="col-md-8">
+                <input class="form-control"
+                       id="supplierId"
+                       type="text"
+                       placeholder="supplierId (requerido)"
+                       formControlName="supplierId" />
+                <span class="help-block" *ngIf="(productForm.get('supplierId').touched ||
+                                                         productForm.get('supplierId').dirty) &&
+                                                         productForm.get('supplierId').errors">
+                    <span *ngIf="productForm.get('supplierId').errors.required">
+                        El supplierId es requerido.
+                    </span>
+                    <span *ngIf="productForm.get('supplierId').errors.minlength">
+                        Al menos 1 caracteres.
+                    </span>
+                    <span *ngIf="productForm.get('supplierId').errors.maxlength">
+                        Se acepta un máximo de 20 caracteres.
+                    </span>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error': isValid('categoryId') }">
+            <label class="col-md-2 control-label"
+                   for="supplierId">categoryId</label>
+
+            <div class="col-md-8">
+                <input class="form-control"
+                       id="categoryId"
+                       type="text"
+                       placeholder="categoryId (requerido)"
+                       formControlName="categoryId" />
+                <span class="help-block" *ngIf="(productForm.get('categoryId').touched ||
+                                                         productForm.get('categoryId').dirty) &&
+                                                         productForm.get('categoryId').errors">
+                    <span *ngIf="productForm.get('categoryId').errors.required">
+                        El categoryId es requerido.
+                    </span>
+                    <span *ngIf="productForm.get('categoryId').errors.minlength">
+                        Al menos 1 caracteres.
+                    </span>
+                    <span *ngIf="productForm.get('categoryId').errors.maxlength">
+                        Se acepta un máximo de 20 caracteres.
+                    </span>
+                </span>
+            </div>
+        </div>
+        <div class="alert alert-success" *ngIf="saveSuccess">
+            <strong>Se creo el registro {{product.productName}}</strong>
+        </div>
+        <div class="alert alert-danger" *ngIf="saveError">
+            <strong>{{errorMessage}}</strong>
+        </div>
+        <div class="row">
+            <button type="submit" class="btn btn-primary" [disabled]="!productForm.valid">Save</button>
+            <button type="submit" class="btn btn-primary" (click)="onBack()">Back</button>
+        </div>
+    </fieldset>
+</form>
+<br>Dirty: {{ productForm.dirty }}
+<br>Touched: {{ productForm.touched }}
+<br>Valid: {{ productForm.valid }}
+<br>Value: {{ productForm.value | json }}
+<hr />

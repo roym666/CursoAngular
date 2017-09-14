@@ -1,0 +1,71 @@
+﻿<!--<div class="row">
+    <h1>Details</h1>
+    <div class="row">
+        <label class="col-md-2 control-label">ID:</label>
+        <div class="col-md-8">
+            <input type="text" [(ngModel)]="product.productId" />
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-md-2 control-label">Name:</label>
+        <div class="col-md-8">
+            <input type="text" [(ngModel)]="product.productName" />
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-md-2 control-label">Quantity:</label>
+        <div class="col-md-8">
+            <input type="text" [(ngModel)]="product.quantityPerUnit" />
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-md-2 control-label">Price:</label>
+        <div class="col-md-8">
+            <input type="text" [(ngModel)]="product.unitPrice" />
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-md-2 control-label">Units:</label>
+        <div class="col-md-8">
+            <input type="text" [(ngModel)]="product.unitsInStock" />
+        </div>
+    </div>
+</div>
+<div class="row">
+    <button type="submit" class="btn btn-primary" (click)="onBack()">Back</button>
+</div>-->
+
+<h3>Detail</h3>
+<div class="panel panel-primary">
+    <div class="panel-heading">Product</div>
+    <div class="panel-body">
+        <dl>
+            <dd>Id</dd>
+            <dt>{{product.productId}}</dt>
+            <dd>Name</dd>
+            <dt>{{product.productName}}</dt>
+            <dd>Quantity Per Unit</dd>
+            <dt>{{product.quantityPerUnit}}</dt>
+            <dd>Unit Price</dd>
+            <dt>{{product.unitPrice}}</dt>
+            <dd>Units In Stock</dd>
+            <dt>{{product.unitsInStock}}</dt>
+            <dd>Units On Order</dd>
+            <dt>{{product.unitsOnOrder}}</dt>
+            <dd>Reorder Level</dd>
+            <dt>{{product.reorderLevel}}</dt>
+            <dd>Discontinued</dd>
+            <dt>{{product.discontinued}}</dt>
+            <dd>Supplier</dd>
+            <dt>{{product.supplier.companyName}}</dt>
+            <dd>Category</dd>
+            <dt>{{product.category.categoryName}}</dt>
+        </dl>
+    </div>
+</div>
+
+<button class="btn" (click)="onBack()">Back 1</button>
+<a [routerLink]="['/products']" queryParamsHandling="preserve">Back 2</a>
+<button class="btn" (click)="onDemo()">Demo</button>
