@@ -6,6 +6,11 @@
     <TypeScriptToolsVersion>2.4</TypeScriptToolsVersion>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\app\categories\category.service.ts" />
+    <Content Remove="wwwroot\app\categories\ICategory.ts" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
@@ -21,6 +26,13 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\app\products\product-delete\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="wwwroot\app\categories\category.service.ts" />
+    <TypeScriptCompile Include="wwwroot\app\categories\ICategory.ts" />
+    <TypeScriptCompile Include="wwwroot\app\suppliers\supplier.service.ts" />
+    <TypeScriptCompile Include="wwwroot\app\suppliers\ISupplier.ts" />
   </ItemGroup>
 
 </Project>

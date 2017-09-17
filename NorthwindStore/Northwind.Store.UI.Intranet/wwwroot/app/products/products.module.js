@@ -20,6 +20,8 @@ var common_1 = require("@angular/common");
 var http_2 = require("@angular/common/http");
 var product_service_1 = require("./product.service");
 var product_resolver_service_1 = require("./product-resolver.service");
+var supplier_service_1 = require("../suppliers/supplier.service");
+var category_service_1 = require("../categories/category.service");
 var routes = [
     {
         path: '',
@@ -55,7 +57,7 @@ var ProductsModule = (function () {
                 product_create_component_1.ProductCreateComponent,
                 product_detail_component_1.ProductDetailComponent,
                 product_edit_component_1.ProductEditComponent
-            ], providers: [product_service_1.ProductService, product_resolver_service_1.ProductResolver]
+            ], providers: [product_service_1.ProductService, product_resolver_service_1.ProductResolver, category_service_1.CategoryService, supplier_service_1.SupplierService]
         })
     ], ProductsModule);
     return ProductsModule;

@@ -17,6 +17,12 @@ import 'rxjs/add/operator/catch';
 
 import { HttpErrorResponse } from '@angular/common/http';
 
+import { CategoryService } from '../../categories/category.service';
+import { Category } from '../../categories/ICategory';
+
+import { SupplierService } from '../../suppliers/supplier.service';
+import { Supplier } from '../../suppliers/ISupplier';
+
 @Component({
     templateUrl: './product-create.component.html',
     providers: [ProductService]
@@ -25,10 +31,12 @@ export class ProductCreateComponent implements OnInit {
 
     saveSuccess: boolean;
     saveError: boolean;
-    product: Product;
+    product: Product = new Product();
     productForm: FormGroup;
     errorMessage: string;
-    constructor(private route: ActivatedRoute, private router: Router, private fb: FormBuilder, private ps: ProductService) { }
+    suppliers: Observable<Supplier[]>;
+    categories: Observable<Category[]>;
+    constructor(private route: ActivatedRoute, private router: Router, private fb: FormBuilder, private ps: ProductService, private cs: CategoryService, private ss: SupplierService) { }
 
     ngOnInit(): void {
         this.saveError = false;
@@ -39,17 +47,20 @@ export class ProductCreateComponent implements OnInit {
                 Validators.minLength(3),
                 Validators.maxLength(50)]],
             supplierId: ['', [
-                Validators.required,
-                Validators.minLength(1),
-                Validators.maxLength(3)]],
+                Validators.required]],
             categoryId: ['', [
-                Validators.required,
-                Validators.minLength(1),
-                Validators.maxLength(3)]]
+                Validators.required]]
         });
 
         this.productForm.get('productName').valueChanges
             .subscribe(value => this.setValidator(value));
+
+        this.suppliers = this.ss.getSuppliers();
+        this.categories = this.cs.getCategories();
+        this.categories.subscribe((c) => {
+            console.log('suscrito');
+            console.log(c);
+        });
     }
 
     setModel(product: Product): void {

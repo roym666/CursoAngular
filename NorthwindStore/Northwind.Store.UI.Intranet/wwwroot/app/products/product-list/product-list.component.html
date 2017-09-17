@@ -1,21 +1,5 @@
 ﻿<h3>Products</h3>
 <div class="container">
-    <!--<button type="button" class="btn btn-info" (click)="post()">
-        <span class="glyphicon glyphicon-floppy-disk"></span> Post
-    </button>
-    <button type="button" class="btn btn-info" (click)="put()">
-        <span class="glyphicon glyphicon-floppy-open"></span> Put
-    </button>
-    <button type="button" class="btn btn-info" (click)="delete()">
-        <span class="glyphicon glyphicon-trash"></span> Delete
-    </button>
-    <button type="button" class="btn btn-info" (click)="get()">
-        <span class="glyphicon glyphicon-search"></span> Get
-    </button>
-    <button type="button" class="btn btn-info" (click)="obtenerTodos()">
-        <span class="glyphicon glyphicon-th-list"></span> Obtener Todos
-    </button>-->
-
     <div class="alert alert-success" *ngIf="saveSuccess">
         <strong>Se elimino el registro</strong>
     </div>
@@ -23,7 +7,7 @@
         <strong>{{errorMessage}}</strong>
     </div>
 
-    <div class="container">
+    <div class="panel panel-default">
         <button class="btn btn-info" routerLink="/products">
             <span class=" glyphicon glyphicon-floppy-disk">
             </span>Products1
@@ -31,12 +15,6 @@
         <button class="btn btn-info" routerLink="/products/create" [queryParams]="{filterBy: filter}">
             <span class=" glyphicon glyphicon-new-window"></span>Create
         </button>
-        <!--<button class="btn btn-info" [routerLink]="['/products', 1]" [queryParams]="{filterBy: 'abc'}">
-            <span class=" glyphicon glyphicon-expand"></span>Details
-        </button>
-        <button class="btn btn-info" [routerLink]="['/products', 1, 'edit']">
-            <span class=" glyphicon glyphicon-edit"></span>Edit
-        </button>-->
         <button type="button" class="btn btn-info" (click)="obtenerTodos()">
             <span class="glyphicon glyphicon-th-list"></span> Obtener Todos
         </button>
@@ -45,7 +23,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="panel panel-default">
         <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">Products</div>

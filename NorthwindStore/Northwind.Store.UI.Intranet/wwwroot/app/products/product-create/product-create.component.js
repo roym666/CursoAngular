@@ -13,17 +13,23 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var forms_1 = require("@angular/forms");
 var product_service_1 = require("../product.service");
+var IProduct_1 = require("../IProduct");
 require("rxjs/add/observable/of");
 require("rxjs/add/operator/debounceTime");
 require("rxjs/add/operator/distinctUntilChanged");
 require("rxjs/add/operator/switchMap");
 require("rxjs/add/operator/catch");
+var category_service_1 = require("../../categories/category.service");
+var supplier_service_1 = require("../../suppliers/supplier.service");
 var ProductCreateComponent = (function () {
-    function ProductCreateComponent(route, router, fb, ps) {
+    function ProductCreateComponent(route, router, fb, ps, cs, ss) {
         this.route = route;
         this.router = router;
         this.fb = fb;
         this.ps = ps;
+        this.cs = cs;
+        this.ss = ss;
+        this.product = new IProduct_1.Product();
     }
     ProductCreateComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -36,18 +42,20 @@ var ProductCreateComponent = (function () {
                     forms_1.Validators.maxLength(50)
                 ]],
             supplierId: ['', [
-                    forms_1.Validators.required,
-                    forms_1.Validators.minLength(1),
-                    forms_1.Validators.maxLength(3)
+                    forms_1.Validators.required
                 ]],
             categoryId: ['', [
-                    forms_1.Validators.required,
-                    forms_1.Validators.minLength(1),
-                    forms_1.Validators.maxLength(3)
+                    forms_1.Validators.required
                 ]]
         });
         this.productForm.get('productName').valueChanges
             .subscribe(function (value) { return _this.setValidator(value); });
+        this.suppliers = this.ss.getSuppliers();
+        this.categories = this.cs.getCategories();
+        this.categories.subscribe(function (c) {
+            console.log('suscrito');
+            console.log(c);
+        });
     };
     ProductCreateComponent.prototype.setModel = function (product) {
         if (this.productForm) {
@@ -118,7 +126,7 @@ var ProductCreateComponent = (function () {
             templateUrl: './product-create.component.html',
             providers: [product_service_1.ProductService]
         }),
-        __metadata("design:paramtypes", [router_1.ActivatedRoute, router_1.Router, forms_1.FormBuilder, product_service_1.ProductService])
+        __metadata("design:paramtypes", [router_1.ActivatedRoute, router_1.Router, forms_1.FormBuilder, product_service_1.ProductService, category_service_1.CategoryService, supplier_service_1.SupplierService])
     ], ProductCreateComponent);
     return ProductCreateComponent;
 }());

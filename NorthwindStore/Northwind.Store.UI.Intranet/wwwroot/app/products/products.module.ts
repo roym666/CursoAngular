@@ -15,6 +15,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductService } from './product.service';
 import { ProductResolver } from './product-resolver.service';
 
+import { SupplierService } from '../suppliers/supplier.service';
+import { CategoryService } from '../categories/category.service';
+
 const routes: Routes = [
     {
         path: '',
@@ -47,6 +50,6 @@ const routes: Routes = [
         ProductCreateComponent,
         ProductDetailComponent,
         ProductEditComponent
-    ], providers: [ProductService, ProductResolver]
+    ], providers: [ProductService, ProductResolver, CategoryService, SupplierService]
 })
 export class ProductsModule { }
