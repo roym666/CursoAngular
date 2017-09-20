@@ -160,4 +160,10 @@ export class ProductListComponent implements OnInit {
         this.paginacion.paginaSeleccionadaActual = + e.target.innerText;       
         this.searchTerms.next(this.paginacion);
     }
+
+    ordernar(columna: string) {
+        this.paginacion.columna = columna;
+        this.paginacion.ordenamiento = 'asc';
+        this.searchTerms.next(this.paginacion);
+    }
 }

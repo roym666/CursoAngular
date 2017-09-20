@@ -133,6 +133,11 @@ var ProductListComponent = (function () {
         this.paginacion.paginaSeleccionadaActual = +e.target.innerText;
         this.searchTerms.next(this.paginacion);
     };
+    ProductListComponent.prototype.ordernar = function (columna) {
+        this.paginacion.columna = columna;
+        this.paginacion.ordenamiento = 'asc';
+        this.searchTerms.next(this.paginacion);
+    };
     ProductListComponent = __decorate([
         core_1.Component({
             templateUrl: "./product-list.component.html",

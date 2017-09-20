@@ -28,9 +28,9 @@ namespace Northwind.Store.Service.Controllers
         [HttpGet()]
         public async Task<IEnumerable<ProductDTO>> GetProducts(string name = "", int pagina = 1, string columna = "productId", string dir = "asc")
         {
-            var sort = new List<SortModel>() { new SortModel() { ColumnName = columna, Sort = dir } };
+            var orden = new List<SortModel>() { new SortModel() { ColumnName = columna, Sort = dir } };
 
-            return await _context.Products.Include(p => p.Category).Include(p => p.Supplier).OrderBy(sort).
+            return await _context.Products.Include(p => p.Category).Include(p => p.Supplier).OrderBy(orden).
              Where(p => p.ProductName.Contains(name) || string.IsNullOrEmpty(name)).
              Skip(--pagina * 10).Take(10).
              AsNoTracking().Select(p => new ProductDTO()
