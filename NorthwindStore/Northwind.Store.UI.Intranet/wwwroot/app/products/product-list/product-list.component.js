@@ -19,27 +19,33 @@ require("rxjs/add/operator/debounceTime");
 require("rxjs/add/operator/distinctUntilChanged");
 require("rxjs/add/operator/switchMap");
 require("rxjs/add/operator/catch");
+var paginacion_model_1 = require("../../shared/paginacion.model");
 var ProductListComponent = (function () {
     function ProductListComponent(route, ps) {
         this.route = route;
         this.ps = ps;
-        this.searchTerms = new BehaviorSubject_1.BehaviorSubject('');
         this.numeroDePaginas = [];
-        this.paginaSeleccionadaActual = 1;
-        this.columna = "productId";
-        this.ordenamiento = "asc";
+        //paginaSeleccionadaActual: number = 1;
+        //columna: string = "productId";
+        //ordenamiento: string = "asc";
+        this.paginacion = new paginacion_model_1.Paginacion();
+        this.searchTerms = new BehaviorSubject_1.BehaviorSubject(this.paginacion);
     }
     ProductListComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.paginacion.columna = 'productId';
+        this.paginacion.filtro = '';
+        this.paginacion.ordenamiento = 'asc';
+        this.paginacion.paginaSeleccionadaActual = 1;
         this.filter = this.route.snapshot.queryParams['filterBy'] || '';
         this.saveSuccess = false;
         this.saveError = false;
         // Requiere el pipe async
         this.products = this.searchTerms.
             debounceTime(300).
-            distinctUntilChanged().
+            //distinctUntilChanged().
             switchMap(function (term) { return term
-            ? _this.ps.searchProducts(term, _this.paginaSeleccionadaActual, _this.columna, _this.ordenamiento)
+            ? _this.ps.searchProducts(term)
             : Observable_1.Observable.of([]); }).
             catch(this.handleError);
         this.search();
@@ -116,14 +122,16 @@ var ProductListComponent = (function () {
     //    this.searchTerms.next(term);
     //}
     ProductListComponent.prototype.search = function () {
-        this.searchTerms.next(this.filter);
+        console.log(this.paginacion.filtro);
+        this.searchTerms.next(this.paginacion);
     };
     ProductListComponent.prototype.handleError = function (err) {
         console.error(err.message);
         return Observable_1.Observable.throw(err.message);
     };
     ProductListComponent.prototype.seleccionarPagina = function (e) {
-        this.paginaSeleccionadaActual = +e.target.innerText;
+        this.paginacion.paginaSeleccionadaActual = +e.target.innerText;
+        this.searchTerms.next(this.paginacion);
     };
     ProductListComponent = __decorate([
         core_1.Component({

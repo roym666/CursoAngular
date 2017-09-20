@@ -6,6 +6,8 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 
+import { Paginacion } from '../shared/paginacion.model';
+
 import { Product } from './IProduct';
 
 @Injectable()
@@ -15,10 +17,10 @@ export class ProductService {
 
     constructor(private http: HttpClient) { }
 
-    searchProducts(term: string, pagina: number, columna: string, dir: string): Observable<Product[]> {
+    searchProducts(paginacion: Paginacion): Observable<Product[]> {
         // int pagina = 1, string columna = "productId", string dir = "asc"
         return this.http
-            .get<Product[]>(`${this.apiUrl}/?name=${term}&pagina=${pagina}&columna=${columna}&dir=${dir}`)
+            .get<Product[]>(`${this.apiUrl}/?name=${paginacion.filtro}&pagina=${paginacion.paginaSeleccionadaActual}&columna=${paginacion.columna}&dir=${paginacion.ordenamiento}`)
             .do(data => console.log('searchProducts: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }

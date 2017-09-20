@@ -21,10 +21,10 @@ var ProductService = (function () {
         this.apiUrl = 'https://localhost:44394/api/Product';
         this.headers = new http_1.HttpHeaders({ 'Content-Type': 'application/json' });
     }
-    ProductService.prototype.searchProducts = function (term, pagina, columna, dir) {
+    ProductService.prototype.searchProducts = function (paginacion) {
         // int pagina = 1, string columna = "productId", string dir = "asc"
         return this.http
-            .get(this.apiUrl + "/?name=" + term + "&pagina=" + pagina + "&columna=" + columna + "&dir=" + dir)
+            .get(this.apiUrl + "/?name=" + paginacion.filtro + "&pagina=" + paginacion.paginaSeleccionadaActual + "&columna=" + paginacion.columna + "&dir=" + paginacion.ordenamiento)
             .do(function (data) { return console.log('searchProducts: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };

@@ -17,27 +17,36 @@ import 'rxjs/add/operator/catch';
 
 import { HttpErrorResponse } from '@angular/common/http';
 
+import { Paginacion } from '../../shared/paginacion.model';
+
 @Component({
     templateUrl: `./product-list.component.html`,
     providers: [ProductService]
 })
 export class ProductListComponent implements OnInit {
     products: Observable<Product[]>;
-    private searchTerms = new BehaviorSubject('');
+
     filter: string;
     product: Product;
     errorMessage: string;
     saveSuccess: boolean;
     saveError: boolean;
     numeroDePaginas: any[] = [];
-    paginaSeleccionadaActual: number = 1;
-    columna: string = "productId";
-    ordenamiento: string = "asc";
+    //paginaSeleccionadaActual: number = 1;
+    //columna: string = "productId";
+    //ordenamiento: string = "asc";
 
+    paginacion: Paginacion = new Paginacion();
+    private searchTerms = new BehaviorSubject(this.paginacion);
     constructor(private route: ActivatedRoute, private ps: ProductService) { }
 
 
     ngOnInit(): void {
+
+        this.paginacion.columna = 'productId';
+        this.paginacion.filtro = '';
+        this.paginacion.ordenamiento = 'asc';
+        this.paginacion.paginaSeleccionadaActual = 1;
 
         this.filter = this.route.snapshot.queryParams['filterBy'] || '';
 
@@ -46,9 +55,9 @@ export class ProductListComponent implements OnInit {
         // Requiere el pipe async
         this.products = this.searchTerms.
             debounceTime(300).
-            distinctUntilChanged().
+            //distinctUntilChanged().
             switchMap(term => term
-                ? this.ps.searchProducts(term, this.paginaSeleccionadaActual, this.columna, this.ordenamiento)
+                ? this.ps.searchProducts(term)
                 : Observable.of<Product[]>([])).
             catch(this.handleError);
         this.search();
@@ -138,7 +147,8 @@ export class ProductListComponent implements OnInit {
     //}
 
     search() {
-        this.searchTerms.next(this.filter);
+        console.log(this.paginacion.filtro);
+        this.searchTerms.next(this.paginacion);
     }
 
     private handleError(err: HttpErrorResponse) {
@@ -147,6 +157,7 @@ export class ProductListComponent implements OnInit {
     }
 
     seleccionarPagina(e: any) {
-        this.paginaSeleccionadaActual = + e.target.innerText;
+        this.paginacion.paginaSeleccionadaActual = + e.target.innerText;       
+        this.searchTerms.next(this.paginacion);
     }
 }
