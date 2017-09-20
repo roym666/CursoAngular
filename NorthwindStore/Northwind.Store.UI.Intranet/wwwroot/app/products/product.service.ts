@@ -15,9 +15,10 @@ export class ProductService {
 
     constructor(private http: HttpClient) { }
 
-    searchProducts(term: string): Observable<Product[]> {
+    searchProducts(term: string, pagina: number, columna: string, dir: string): Observable<Product[]> {
+        // int pagina = 1, string columna = "productId", string dir = "asc"
         return this.http
-            .get<Product[]>(`${this.apiUrl}/?name=${term}`)
+            .get<Product[]>(`${this.apiUrl}/?name=${term}&pagina=${pagina}&columna=${columna}&dir=${dir}`)
             .do(data => console.log('searchProducts: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }

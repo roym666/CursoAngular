@@ -24,6 +24,10 @@ var ProductListComponent = (function () {
         this.route = route;
         this.ps = ps;
         this.searchTerms = new BehaviorSubject_1.BehaviorSubject('');
+        this.numeroDePaginas = [];
+        this.paginaSeleccionadaActual = 1;
+        this.columna = "productId";
+        this.ordenamiento = "asc";
     }
     ProductListComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -35,10 +39,16 @@ var ProductListComponent = (function () {
             debounceTime(300).
             distinctUntilChanged().
             switchMap(function (term) { return term
-            ? _this.ps.searchProducts(term)
+            ? _this.ps.searchProducts(term, _this.paginaSeleccionadaActual, _this.columna, _this.ordenamiento)
             : Observable_1.Observable.of([]); }).
             catch(this.handleError);
         this.search();
+        //aca solo se muestran 8 paginas
+        this.numeroDePaginas = [];
+        console.log(8);
+        for (var i = 1; i <= Math.round(8); i++) {
+            this.numeroDePaginas.push({ pageNumber: i, isSelected: i == 1 ? true : false });
+        }
     };
     //post(): void {
     //    this.ps.createProduct(
@@ -111,6 +121,9 @@ var ProductListComponent = (function () {
     ProductListComponent.prototype.handleError = function (err) {
         console.error(err.message);
         return Observable_1.Observable.throw(err.message);
+    };
+    ProductListComponent.prototype.seleccionarPagina = function (e) {
+        this.paginaSeleccionadaActual = +e.target.innerText;
     };
     ProductListComponent = __decorate([
         core_1.Component({

@@ -59,6 +59,11 @@
                         </tr>
                     </tbody>
                 </table>
+                <ul class="pagination" *ngFor="let contador of numeroDePaginas">
+                    <li (click)="seleccionarPagina($event)" [class]="paginaSeleccionadaActual == contador.pageNumber ? 'active' : ''" style="cursor:pointer;">
+                        <a>{{contador.pageNumber}}</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

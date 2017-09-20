@@ -29,6 +29,10 @@ export class ProductListComponent implements OnInit {
     errorMessage: string;
     saveSuccess: boolean;
     saveError: boolean;
+    numeroDePaginas: any[] = [];
+    paginaSeleccionadaActual: number = 1;
+    columna: string = "productId";
+    ordenamiento: string = "asc";
 
     constructor(private route: ActivatedRoute, private ps: ProductService) { }
 
@@ -44,10 +48,17 @@ export class ProductListComponent implements OnInit {
             debounceTime(300).
             distinctUntilChanged().
             switchMap(term => term
-                ? this.ps.searchProducts(term)
+                ? this.ps.searchProducts(term, this.paginaSeleccionadaActual, this.columna, this.ordenamiento)
                 : Observable.of<Product[]>([])).
             catch(this.handleError);
         this.search();
+
+        //aca solo se muestran 8 paginas
+        this.numeroDePaginas = [];
+        console.log(8);
+        for (let i = 1; i <= Math.round(8); i++) {
+            this.numeroDePaginas.push({ pageNumber: i, isSelected: i == 1 ? true : false });
+        }
 
     }
 
@@ -133,5 +144,9 @@ export class ProductListComponent implements OnInit {
     private handleError(err: HttpErrorResponse) {
         console.error(err.message);
         return Observable.throw(err.message);
+    }
+
+    seleccionarPagina(e: any) {
+        this.paginaSeleccionadaActual = + e.target.innerText;
     }
 }
