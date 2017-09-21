@@ -64,4 +64,11 @@ export class ProductService {
         console.error(err.message);
         return Observable.throw(err.message);
     }
+
+    getRank(id: number): Observable<any> {
+        const url = `${this.apiUrl}/${id}/rank`;
+        return this.http.get<any>(url)
+            .do(data => console.log('getRank: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
 }

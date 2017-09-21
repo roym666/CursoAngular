@@ -62,6 +62,12 @@ var ProductService = (function () {
         console.error(err.message);
         return Observable_1.Observable.throw(err.message);
     };
+    ProductService.prototype.getRank = function (id) {
+        var url = this.apiUrl + "/" + id + "/rank";
+        return this.http.get(url)
+            .do(function (data) { return console.log('getRank: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
     ProductService = __decorate([
         core_1.Injectable(),
         __metadata("design:paramtypes", [http_1.HttpClient])

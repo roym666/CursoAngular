@@ -13,6 +13,8 @@ var router_1 = require("@angular/router");
 var home_component_1 = require("./home/home.component");
 var page_not_found_1 = require("./shared/page-not-found");
 var login_guard_service_1 = require("./shared/login-guard.service");
+var toast_module_1 = require("./shared/toast/toast.module");
+var modal_module_1 = require("./shared/modal/modal.module");
 var routes = [
     { path: 'home', component: home_component_1.HomeComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -24,7 +26,7 @@ var AppModule = (function () {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, router_1.RouterModule.forRoot(routes, { enableTracing: true, preloadingStrategy: router_1.PreloadAllModules })],
+            imports: [platform_browser_1.BrowserModule, router_1.RouterModule.forRoot(routes, { enableTracing: true, preloadingStrategy: router_1.PreloadAllModules }), toast_module_1.ToastModule, modal_module_1.ModalModule],
             declarations: [app_component_1.AppComponent, home_component_1.HomeComponent, page_not_found_1.PageNotFoundComponent],
             bootstrap: [app_component_1.AppComponent], providers: [login_guard_service_1.LoginGuard]
         })

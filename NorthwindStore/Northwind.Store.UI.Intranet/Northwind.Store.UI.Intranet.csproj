@@ -29,9 +29,30 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\app\shared\modal\modal.component.js" />
+    <None Include="wwwroot\app\shared\modal\modal.component.js.map" />
+    <None Include="wwwroot\app\shared\modal\modal.module.js" />
+    <None Include="wwwroot\app\shared\modal\modal.module.js.map" />
+    <None Include="wwwroot\app\shared\modal\modal.service.js" />
+    <None Include="wwwroot\app\shared\modal\modal.service.js.map" />
+    <None Include="wwwroot\app\shared\toast\toast.component.js" />
+    <None Include="wwwroot\app\shared\toast\toast.component.js.map" />
+    <None Include="wwwroot\app\shared\toast\toast.module.js" />
+    <None Include="wwwroot\app\shared\toast\toast.module.js.map" />
+    <None Include="wwwroot\app\shared\toast\toast.service.js" />
+    <None Include="wwwroot\app\shared\toast\toast.service.js.map" />
+  </ItemGroup>
+
+  <ItemGroup>
     <TypeScriptCompile Include="wwwroot\app\categories\category.service.ts" />
     <TypeScriptCompile Include="wwwroot\app\categories\ICategory.ts" />
+    <TypeScriptCompile Include="wwwroot\app\shared\modal\modal.component.ts" />
+    <TypeScriptCompile Include="wwwroot\app\shared\modal\modal.module.ts" />
+    <TypeScriptCompile Include="wwwroot\app\shared\modal\modal.service.ts" />
     <TypeScriptCompile Include="wwwroot\app\shared\paginacion.model.ts" />
+    <TypeScriptCompile Include="wwwroot\app\shared\toast\toast.component.ts" />
+    <TypeScriptCompile Include="wwwroot\app\shared\toast\toast.module.ts" />
+    <TypeScriptCompile Include="wwwroot\app\shared\toast\toast.service.ts" />
     <TypeScriptCompile Include="wwwroot\app\suppliers\supplier.service.ts" />
     <TypeScriptCompile Include="wwwroot\app\suppliers\ISupplier.ts" />
   </ItemGroup>

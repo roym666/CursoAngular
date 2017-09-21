@@ -18,6 +18,7 @@ import { ProductResolver } from './product-resolver.service';
 import { SupplierService } from '../suppliers/supplier.service';
 import { CategoryService } from '../categories/category.service';
 
+import { ProductDetailExtraComponent } from '../products/product-detail-extra/product-detail-extra.component';
 const routes: Routes = [
     {
         path: '',
@@ -33,7 +34,8 @@ const routes: Routes = [
             {
                 path: ':id',
                 component: ProductDetailComponent,
-                resolve: { product: ProductResolver }
+                resolve: { product: ProductResolver },
+                children: [{ path: 'extra', component: ProductDetailExtraComponent }]
             },
             {
                 path: ':id/edit',
@@ -49,7 +51,8 @@ const routes: Routes = [
         ProductListComponent,
         ProductCreateComponent,
         ProductDetailComponent,
-        ProductEditComponent
+        ProductEditComponent,
+        ProductDetailExtraComponent
     ], providers: [ProductService, ProductResolver, CategoryService, SupplierService]
 })
 export class ProductsModule { }

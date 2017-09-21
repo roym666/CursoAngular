@@ -38,6 +38,7 @@
 </div>-->
 
 <h3>Detail</h3>
+<a class="btn btn-primary" [routerLink]="['extra']">Country Ranking</a>
 <div class="panel panel-primary">
     <div class="panel-heading">Product</div>
     <div class="panel-body">
@@ -63,6 +64,9 @@
             <dd>Category</dd>
             <dt>{{product.category.categoryName}}</dt>
         </dl>
+    </div>
+    <div class="col-md-4">
+        <router-outlet></router-outlet>
     </div>
 </div>
 

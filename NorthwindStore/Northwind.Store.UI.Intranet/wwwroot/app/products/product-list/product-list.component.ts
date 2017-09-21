@@ -19,9 +19,11 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 import { Paginacion } from '../../shared/paginacion.model';
 
+import { ToastService } from '../../shared/toast/toast.service';
+
 @Component({
     templateUrl: `./product-list.component.html`,
-    providers: [ProductService]
+    providers: [ProductService, ToastService]
 })
 export class ProductListComponent implements OnInit {
     products: Product[];
@@ -39,11 +41,11 @@ export class ProductListComponent implements OnInit {
 
     paginacion: Paginacion = new Paginacion();
     private searchTerms = new BehaviorSubject(this.paginacion);
-    constructor(private route: ActivatedRoute, private ps: ProductService) { }
+    constructor(private route: ActivatedRoute, private ps: ProductService,private ts: ToastService) { }
 
 
     ngOnInit(): void {
-
+        this.ts.activate('hola a todos con toast component');
         this.paginacion.columna = 'productId';
         this.paginacion.filtro = '';
         this.paginacion.ordenamiento = 'asc';

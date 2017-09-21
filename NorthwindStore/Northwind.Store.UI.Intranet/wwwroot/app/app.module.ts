@@ -9,6 +9,9 @@ import { ProductsModule } from './products/products.module';
 
 import { LoginGuard } from './shared/login-guard.service';
 
+import { ToastModule } from './shared/toast/toast.module';
+import { ModalModule } from './shared/modal/modal.module';
+
 const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -17,7 +20,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [BrowserModule, RouterModule.forRoot(routes, { enableTracing: true, preloadingStrategy: PreloadAllModules })],
+    imports: [BrowserModule, RouterModule.forRoot(routes, { enableTracing: true, preloadingStrategy: PreloadAllModules }), ToastModule, ModalModule],
     declarations: [AppComponent, HomeComponent, PageNotFoundComponent],
     bootstrap: [AppComponent], providers: [LoginGuard]
 })

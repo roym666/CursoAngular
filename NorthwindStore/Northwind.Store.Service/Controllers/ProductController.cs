@@ -26,9 +26,9 @@ namespace Northwind.Store.Service.Controllers
 
         // GET: api/Product
         [HttpGet()]
-        public async Task<Respuesta<IEnumerable<ProductDTO>>> GetProducts(string name = "", int pagina = 1, string columna = "productId", string dir = "asc")
+        public async Task<IActionResult> GetProducts(string name = "", int pagina = 1, string columna = "productId", string dir = "asc")
         {
-            var objRespuesta = new Respuesta<IEnumerable<ProductDTO>>();
+            // var objRespuesta = new Respuesta<IEnumerable<ProductDTO>>();
             var orden = new List<SortModel>() { new SortModel() { ColumnName = columna, Sort = dir } };
 
             var totalReg = (_context.Products.Where(p => p.ProductName.Contains(name) || string.IsNullOrEmpty(name)).Count());
@@ -52,9 +52,32 @@ namespace Northwind.Store.Service.Controllers
                  SupplierName = p.Supplier.CompanyName
 
              }).ToListAsync();
-            objRespuesta.valorRetorno = consulta;
-            objRespuesta.totalPaginas = totalReg / 10;
-            return objRespuesta;
+            //objRespuesta.valorRetorno = consulta;
+            //objRespuesta.totalPaginas = totalReg / 10;
+            return Ok(new { valorRetorno = consulta, totalPaginas = totalReg / 10 });
+        }
+
+        [HttpGet("productsWeb")]
+        public async Task<IEnumerable<ProductDTO>> GetProductsWeb(string name = "")
+        {
+            return await _context.Products.Include(p => p.Category).Include(p => p.Supplier).
+            Where(p => p.ProductName.Contains(name) || string.IsNullOrEmpty(name)).
+            AsNoTracking().Select(p => new ProductDTO()
+            {
+                ProductId = p.ProductId,
+                ProductName = p.ProductName,
+                QuantityPerUnit = p.QuantityPerUnit,
+                UnitPrice = p.UnitPrice,
+                UnitsInStock = p.UnitsInStock,
+                UnitsOnOrder = p.UnitsOnOrder,
+                ReorderLevel = p.ReorderLevel,
+                Discontinued = p.Discontinued,
+                CategoryId = p.CategoryId,
+                CategoryName = p.Category.CategoryName,
+                SupplierId = p.SupplierId,
+                SupplierName = p.Supplier.CompanyName
+            }
+            ).ToListAsync();
         }
 
         // GET: api/Product/5
@@ -182,6 +205,14 @@ namespace Northwind.Store.Service.Controllers
         private bool ProductsExists(int id)
         {
             return _context.Products.Any(e => e.ProductId == id);
+        }
+
+        [HttpGet("{id}/rank")]
+        public async Task<object> GetRank(int id)
+        {
+            var rank = _context.OrderDetails.Where(od => od.ProductId == id).Select(od => od.Order).GroupBy(o => o.ShipCountry).
+                Select(g => new { Country = g.Key, Quantity = g.Count() }).OrderByDescending(g => g.Quantity);
+            return await rank.ToListAsync();
         }
     }
 }

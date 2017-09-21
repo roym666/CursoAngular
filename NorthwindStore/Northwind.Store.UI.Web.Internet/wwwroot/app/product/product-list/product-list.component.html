@@ -1,0 +1,20 @@
+﻿<h2>{{header}}</h2>
+<div class="row">
+    <div class="col-md-12">
+        <label for="iFilter">Filter:</label>
+        <input type="search" [(ngModel)]="filter" id="iFilter" (keyup)="onSearchKey($event)" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <ul>
+            <li *ngFor="let p of products | async; trackBy: trackByProduct">
+                {{p.quantityPerUnit}}<br/>
+                {{p.unitPrice | currency:'USD':true}}<br />
+                {{p.unitsInStock}}<br />
+                {{p.categoryName}}<br />
+                {{p.supplierName}}<br />
+            </li>
+        </ul>
+    </div>
+</div>

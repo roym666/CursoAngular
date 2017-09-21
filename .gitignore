@@ -260,3 +260,4 @@ paket-files/
 __pycache__/
 *.pyc
 /NorthwindStore/Northwind.Store.UI.Intranet/bower_components
+/NorthwindStore/Northwind.Store.UI.Web.Internet/bower_components

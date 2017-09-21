@@ -20,10 +20,12 @@ require("rxjs/add/operator/distinctUntilChanged");
 require("rxjs/add/operator/switchMap");
 require("rxjs/add/operator/catch");
 var paginacion_model_1 = require("../../shared/paginacion.model");
+var toast_service_1 = require("../../shared/toast/toast.service");
 var ProductListComponent = (function () {
-    function ProductListComponent(route, ps) {
+    function ProductListComponent(route, ps, ts) {
         this.route = route;
         this.ps = ps;
+        this.ts = ts;
         this.numeroDePaginas = [];
         //paginaSeleccionadaActual: number = 1;
         //columna: string = "productId";
@@ -33,6 +35,7 @@ var ProductListComponent = (function () {
     }
     ProductListComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.ts.activate('hola a todos con toast component');
         this.paginacion.columna = 'productId';
         this.paginacion.filtro = '';
         this.paginacion.ordenamiento = 'asc';
@@ -142,9 +145,9 @@ var ProductListComponent = (function () {
     ProductListComponent = __decorate([
         core_1.Component({
             templateUrl: "./product-list.component.html",
-            providers: [product_service_1.ProductService]
+            providers: [product_service_1.ProductService, toast_service_1.ToastService]
         }),
-        __metadata("design:paramtypes", [router_1.ActivatedRoute, product_service_1.ProductService])
+        __metadata("design:paramtypes", [router_1.ActivatedRoute, product_service_1.ProductService, toast_service_1.ToastService])
     ], ProductListComponent);
     return ProductListComponent;
 }());
