@@ -13,3 +13,9 @@
     discontinued: boolean
     supplierName: string
 }
+
+
+export class Respuesta {
+    totalPaginas: number;
+    valorRetorno: any[];
+}

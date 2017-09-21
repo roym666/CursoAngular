@@ -41,20 +41,21 @@ var ProductListComponent = (function () {
         this.saveSuccess = false;
         this.saveError = false;
         // Requiere el pipe async
-        this.products = this.searchTerms.
+        this.respuesta = this.searchTerms.
             debounceTime(300).
             //distinctUntilChanged().
             switchMap(function (term) { return term
             ? _this.ps.searchProducts(term)
-            : Observable_1.Observable.of([]); }).
+            : Observable_1.Observable.of(); }).
             catch(this.handleError);
+        this.respuesta.subscribe(function (v) {
+            _this.products = v.valorRetorno;
+            _this.numeroDePaginas = [];
+            for (var i = 1; i <= Math.round(v.totalPaginas); i++) {
+                _this.numeroDePaginas.push({ pageNumber: i, isSelected: i == 1 ? true : false });
+            }
+        });
         this.search();
-        //aca solo se muestran 8 paginas
-        this.numeroDePaginas = [];
-        console.log(8);
-        for (var i = 1; i <= Math.round(8); i++) {
-            this.numeroDePaginas.push({ pageNumber: i, isSelected: i == 1 ? true : false });
-        }
     };
     //post(): void {
     //    this.ps.createProduct(

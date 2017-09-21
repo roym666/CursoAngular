@@ -8,7 +8,7 @@ import 'rxjs/add/operator/do';
 
 import { Paginacion } from '../shared/paginacion.model';
 
-import { Product } from './IProduct';
+import { Product, Respuesta } from './IProduct';
 
 @Injectable()
 export class ProductService {
@@ -17,10 +17,10 @@ export class ProductService {
 
     constructor(private http: HttpClient) { }
 
-    searchProducts(paginacion: Paginacion): Observable<Product[]> {
+    searchProducts(paginacion: Paginacion): Observable<Respuesta> {
         // int pagina = 1, string columna = "productId", string dir = "asc"
         return this.http
-            .get<Product[]>(`${this.apiUrl}/?name=${paginacion.filtro}&pagina=${paginacion.paginaSeleccionadaActual}&columna=${paginacion.columna}&dir=${paginacion.ordenamiento}`)
+            .get<Respuesta>(`${this.apiUrl}/?name=${paginacion.filtro}&pagina=${paginacion.paginaSeleccionadaActual}&columna=${paginacion.columna}&dir=${paginacion.ordenamiento}`)
             .do(data => console.log('searchProducts: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }

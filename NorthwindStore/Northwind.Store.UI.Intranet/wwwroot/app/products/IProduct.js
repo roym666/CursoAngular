@@ -6,4 +6,10 @@ var Product = (function () {
     return Product;
 }());
 exports.Product = Product;
+var Respuesta = (function () {
+    function Respuesta() {
+    }
+    return Respuesta;
+}());
+exports.Respuesta = Respuesta;
 //# sourceMappingURL=IProduct.js.map

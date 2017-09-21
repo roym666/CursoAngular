@@ -5,7 +5,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 
 import { ProductService } from '../product.service';
-import { Product } from '../IProduct';
+import { Product, Respuesta } from '../IProduct';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
@@ -24,10 +24,11 @@ import { Paginacion } from '../../shared/paginacion.model';
     providers: [ProductService]
 })
 export class ProductListComponent implements OnInit {
-    products: Observable<Product[]>;
+    products: Product[];
 
     filter: string;
     product: Product;
+    respuesta: Observable<Respuesta>;
     errorMessage: string;
     saveSuccess: boolean;
     saveError: boolean;
@@ -53,22 +54,23 @@ export class ProductListComponent implements OnInit {
         this.saveSuccess = false;
         this.saveError = false;
         // Requiere el pipe async
-        this.products = this.searchTerms.
+        this.respuesta = this.searchTerms.
             debounceTime(300).
             //distinctUntilChanged().
             switchMap(term => term
                 ? this.ps.searchProducts(term)
-                : Observable.of<Product[]>([])).
+                : Observable.of<Respuesta>()).
             catch(this.handleError);
+
+        this.respuesta.subscribe(v => {
+            this.products = v.valorRetorno;
+           
+            this.numeroDePaginas = [];
+            for (let i = 1; i <= Math.round(v.totalPaginas); i++) {
+                this.numeroDePaginas.push({ pageNumber: i, isSelected: i == 1 ? true : false });
+            }
+        });
         this.search();
-
-        //aca solo se muestran 8 paginas
-        this.numeroDePaginas = [];
-        console.log(8);
-        for (let i = 1; i <= Math.round(8); i++) {
-            this.numeroDePaginas.push({ pageNumber: i, isSelected: i == 1 ? true : false });
-        }
-
     }
 
     //post(): void {
@@ -157,7 +159,7 @@ export class ProductListComponent implements OnInit {
     }
 
     seleccionarPagina(e: any) {
-        this.paginacion.paginaSeleccionadaActual = + e.target.innerText;       
+        this.paginacion.paginaSeleccionadaActual = + e.target.innerText;
         this.searchTerms.next(this.paginacion);
     }
 
