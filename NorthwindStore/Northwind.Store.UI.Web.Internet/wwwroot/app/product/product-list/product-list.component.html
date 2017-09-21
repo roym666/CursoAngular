@@ -1,7 +1,7 @@
 ﻿<h2>{{header}}</h2>
 <div class="row">
     <div class="col-md-12">
-        <label for="iFilter">Filter:</label>
+        <label for="iFilter">Filter111:</label>
         <input type="search" [(ngModel)]="filter" id="iFilter" (keyup)="onSearchKey($event)" />
     </div>
 </div>
@@ -14,6 +14,7 @@
                 {{p.unitsInStock}}<br />
                 {{p.categoryName}}<br />
                 {{p.supplierName}}<br />
+                <button class="btn btn-info" [routerLink]="['/product', p.productId]" [queryParams]="{filterBy: filter}"><span class="glyphicon glyphicon-expand"></span>Details</button>
             </li>
         </ul>
     </div>

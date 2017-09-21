@@ -10,21 +10,20 @@ var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
 var http_1 = require("@angular/common/http");
 var forms_1 = require("@angular/forms");
-var product_routing_module_1 = require("./product-routing.module");
-var product_list_component_1 = require("./product-list/product-list.component");
-var product_detail_component_1 = require("./product-detail/product-detail.component");
-var ProductModule = (function () {
-    function ProductModule() {
+var carrito_routing_module_1 = require("./carrito-routing.module");
+var carrito_list_component_1 = require("./carrito-list/carrito-list.component");
+var CarritoModule = (function () {
+    function CarritoModule() {
     }
-    ProductModule = __decorate([
+    CarritoModule = __decorate([
         core_1.NgModule({
-            imports: [common_1.CommonModule, http_1.HttpClientModule, forms_1.FormsModule, product_routing_module_1.ProductsRoutingModule],
+            imports: [common_1.CommonModule, http_1.HttpClientModule, forms_1.FormsModule, carrito_routing_module_1.CarritoRoutingModule],
             declarations: [
-                product_list_component_1.ProductListComponent, product_detail_component_1.ProductDetailComponent
+                carrito_list_component_1.CarritoListComponent
             ]
         })
-    ], ProductModule);
-    return ProductModule;
+    ], CarritoModule);
+    return CarritoModule;
 }());
-exports.ProductModule = ProductModule;
-//# sourceMappingURL=product.module.js.map
+exports.CarritoModule = CarritoModule;
+//# sourceMappingURL=carrito.module.js.map

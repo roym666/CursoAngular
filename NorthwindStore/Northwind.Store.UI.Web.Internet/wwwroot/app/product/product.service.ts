@@ -6,7 +6,7 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 
-import { IProduct } from './product.model';
+import { Product } from './product.model';
 
 @Injectable()
 export class ProductService {
@@ -15,20 +15,20 @@ export class ProductService {
 
     constructor(private http: HttpClient) { }
 
-    searchProducts(term: string): Observable<IProduct[]> {
+    searchProducts(term: string): Observable<Product[]> {
         return this.http
-            .get<IProduct[]>(`${this.apiUrl}/productsWeb?name=${term}`)
+            .get<Product[]>(`${this.apiUrl}/productsWeb?name=${term}`)
             .catch(this.handleError);
     }
 
-    getProducts(): Observable<IProduct[]> {
-        return this.http.get<IProduct[]>(this.apiUrl)
+    getProducts(): Observable<Product[]> {
+        return this.http.get<Product[]>(this.apiUrl)
             .catch(this.handleError);
     }
 
-    getProduct(id: number): Observable<IProduct> {
+    getProduct(id: number): Observable<Product> {
         const url = `${this.apiUrl}/${id}`;
-        return this.http.get<IProduct>(url)
+        return this.http.get<Product>(url)
             .catch(this.handleError);
     }
 
@@ -39,7 +39,7 @@ export class ProductService {
             .catch(this.handleError);
     }
 
-    updateProduct(product: IProduct): Observable<IProduct> {
+    updateProduct(product: Product): Observable<Product> {
         console.log(product);
         const url = `${this.apiUrl}/${product.productId}`;
         return this.http
@@ -47,7 +47,7 @@ export class ProductService {
             .catch(this.handleError);
     }
 
-    createProduct(product: IProduct): Observable<IProduct> {
+    createProduct(product: Product): Observable<Product> {
         return this.http
             .post(this.apiUrl, JSON.stringify(product), { headers: this.headers })
             .catch(this.handleError);

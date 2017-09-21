@@ -1,0 +1,30 @@
+﻿<h3>Detail</h3>
+<a class="btn btn-primary" [routerLink]="['extra']">Country Ranking</a>
+<div class="panel panel-primary">
+    <div class="panel-heading">Product</div>
+    <div class="panel-body">
+        <dl>
+            <dd>Id</dd>
+            <dt>{{product.productId}}</dt>
+            <dd>Name</dd>
+            <dt>{{product.productName}}</dt>
+            <dd>Quantity Per Unit</dd>
+            <dt>{{product.quantityPerUnit}}</dt>
+            <dd>Unit Price</dd>
+            <dt>{{product.unitPrice}}</dt>
+            <dd>Units In Stock</dd>
+            <dt>{{product.unitsInStock}}</dt>
+            <dd>Units On Order</dd>
+            <dt>{{product.unitsOnOrder}}</dt>
+            <dd>Reorder Level</dd>
+            <dt>{{product.reorderLevel}}</dt>
+            <dd>Discontinued</dd>
+            <dt>{{product.discontinued}}</dt>
+            <dd>Supplier</dd>
+            <dt>{{product.supplier.companyName}}</dt>
+            <dd>Category</dd>
+            <dt>{{product.category.categoryName}}</dt>
+        </dl>
+    </div>
+    <button class="btn btn-info" [routerLink]="['/productXXXXXX', p.productId]" [queryParams]="{filterBy: filter}"><span class="glyphicon glyphicon-save"></span>Agregar</button>
+</div>

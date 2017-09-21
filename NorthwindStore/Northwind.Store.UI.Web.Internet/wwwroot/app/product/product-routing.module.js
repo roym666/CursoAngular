@@ -9,12 +9,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var product_list_component_1 = require("./product-list/product-list.component");
+var product_detail_component_1 = require("./product-detail/product-detail.component");
 var product_service_1 = require("./product.service");
+var product_resolver_service_1 = require("./product-resolver.service");
 var routes = [
     {
         path: '',
         children: [
             { path: '', component: product_list_component_1.ProductListComponent, data: { header: 'Product List' } },
+            { path: ':id', component: product_detail_component_1.ProductDetailComponent, resolve: { product: product_resolver_service_1.ProductResolver }, data: { header: 'Product Detail' } },
         ]
     }
 ];
@@ -26,7 +29,7 @@ var ProductsRoutingModule = (function () {
             imports: [router_1.RouterModule.forChild(routes)],
             exports: [router_1.RouterModule],
             providers: [
-                product_service_1.ProductService,
+                product_service_1.ProductService, product_resolver_service_1.ProductResolver
             ]
         })
     ], ProductsRoutingModule);

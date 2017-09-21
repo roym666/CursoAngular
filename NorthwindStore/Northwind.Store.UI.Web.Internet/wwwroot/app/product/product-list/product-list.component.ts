@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
 import { ProductService } from '../product.service';
-import { IProduct } from '../product.model';
+import { Product } from '../product.model';
 
 @Component({
     templateUrl: './product-list.component.html',
@@ -13,7 +13,7 @@ import { IProduct } from '../product.model';
 })
 export class ProductListComponent implements OnInit {
 
-    products: Observable<IProduct[]>;
+    products: Observable<Product[]>;
     filter: string;
 
     constructor(private ps: ProductService, private route: ActivatedRoute, private router: Router) { }
@@ -28,5 +28,5 @@ export class ProductListComponent implements OnInit {
         }
     }
 
-    trackByProduct(index: number, p: IProduct): number { return p.productId; }
+    trackByProduct(index: number, p: Product): number { return p.productId; }
 }

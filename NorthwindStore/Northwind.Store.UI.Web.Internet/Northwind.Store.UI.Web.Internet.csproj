@@ -11,4 +11,8 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <TypeScriptCompile Include="wwwroot\app\carrito\carrito.module.ts" />
+  </ItemGroup>
+
 </Project>
