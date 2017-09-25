@@ -11,6 +11,7 @@ var platform_browser_1 = require("@angular/platform-browser");
 var router_1 = require("@angular/router");
 var app_component_1 = require("./app.component");
 var page_not_found_1 = require("./shared/page-not-found");
+var carrito_service_1 = require("./carrito/carrito.service");
 var routes = [
     { path: '', redirectTo: 'product', pathMatch: 'full' },
     {
@@ -28,7 +29,8 @@ var AppModule = (function () {
             imports: [platform_browser_1.BrowserModule,
                 router_1.RouterModule.forRoot(routes)],
             declarations: [app_component_1.AppComponent, page_not_found_1.PageNotFoundComponent],
-            bootstrap: [app_component_1.AppComponent]
+            bootstrap: [app_component_1.AppComponent],
+            providers: [carrito_service_1.CarritoService]
         })
     ], AppModule);
     return AppModule;

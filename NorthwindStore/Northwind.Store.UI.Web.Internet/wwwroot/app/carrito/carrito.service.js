@@ -10,25 +10,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
-var carrito_service_1 = require("../carrito.service");
-var CarritoListComponent = (function () {
-    function CarritoListComponent(route, router, cs) {
-        this.route = route;
-        this.router = router;
-        this.cs = cs;
+require("rxjs/add/observable/throw");
+require("rxjs/add/operator/catch");
+require("rxjs/add/operator/do");
+var CarritoService = (function () {
+    function CarritoService() {
+        this.productsCarrito = [];
     }
-    CarritoListComponent.prototype.ngOnInit = function () {
-        console.log('desde lista carrito');
-        console.log(this.cs.listarCarrito());
+    CarritoService.prototype.agregarCarrito = function (p) {
+        this.productsCarrito.push(p);
+        console.log('add servicio');
+        console.log(this.productsCarrito);
     };
-    CarritoListComponent = __decorate([
-        core_1.Component({
-            templateUrl: './carrito-list.component.html'
-        }),
-        __metadata("design:paramtypes", [router_1.ActivatedRoute, router_1.Router, carrito_service_1.CarritoService])
-    ], CarritoListComponent);
-    return CarritoListComponent;
+    CarritoService.prototype.listarCarrito = function () {
+        return this.productsCarrito;
+    };
+    CarritoService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [])
+    ], CarritoService);
+    return CarritoService;
 }());
-exports.CarritoListComponent = CarritoListComponent;
-//# sourceMappingURL=carrito-list.component.js.map
+exports.CarritoService = CarritoService;
+//# sourceMappingURL=carrito.service.js.map

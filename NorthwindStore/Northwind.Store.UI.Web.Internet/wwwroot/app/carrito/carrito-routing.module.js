@@ -9,6 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var carrito_list_component_1 = require("./carrito-list/carrito-list.component");
+var carrito_add_component_1 = require("./carrito-add/carrito-add.component");
 //import { ProductDetailComponent } from './product-detail/product-detail.component'
 //import { ProductService } from './product.service'
 //import { ProductResolver } from './product-resolver.service';
@@ -16,7 +17,8 @@ var routes = [
     {
         path: '',
         children: [
-            { path: '', component: carrito_list_component_1.CarritoListComponent, data: { header: 'Carrito List' } }
+            { path: '', component: carrito_list_component_1.CarritoListComponent, data: { header: 'Carrito List' } },
+            { path: ':id/add', component: carrito_add_component_1.CarritoAddComponent, data: { header: 'Add to Carrito' } }
         ]
     }
 ];

@@ -12,6 +12,7 @@ var http_1 = require("@angular/common/http");
 var forms_1 = require("@angular/forms");
 var carrito_routing_module_1 = require("./carrito-routing.module");
 var carrito_list_component_1 = require("./carrito-list/carrito-list.component");
+var carrito_add_component_1 = require("./carrito-add/carrito-add.component");
 var CarritoModule = (function () {
     function CarritoModule() {
     }
@@ -19,7 +20,7 @@ var CarritoModule = (function () {
         core_1.NgModule({
             imports: [common_1.CommonModule, http_1.HttpClientModule, forms_1.FormsModule, carrito_routing_module_1.CarritoRoutingModule],
             declarations: [
-                carrito_list_component_1.CarritoListComponent
+                carrito_list_component_1.CarritoListComponent, carrito_add_component_1.CarritoAddComponent
             ]
         })
     ], CarritoModule);

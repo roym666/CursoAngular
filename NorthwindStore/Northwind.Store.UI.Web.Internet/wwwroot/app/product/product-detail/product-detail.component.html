@@ -26,5 +26,5 @@
             <dt>{{product.category.categoryName}}</dt>
         </dl>
     </div>
-    <button class="btn btn-info" [routerLink]="['/productXXXXXX', p.productId]" [queryParams]="{filterBy: filter}"><span class="glyphicon glyphicon-save"></span>Agregar</button>
+    <button class="btn btn-info" [routerLink]="['/carrito', product.productId,'add']"><span class="glyphicon glyphicon-save"></span>Agregar</button>
 </div>

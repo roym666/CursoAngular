@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './shared/page-not-found';
 
+import { CarritoService } from './carrito/carrito.service';
+
 const routes: Routes = [
     { path: '', redirectTo: 'product', pathMatch: 'full' },
     {
@@ -19,6 +21,7 @@ const routes: Routes = [
     imports: [BrowserModule,
         RouterModule.forRoot(routes)],
     declarations: [AppComponent, PageNotFoundComponent],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    providers: [CarritoService]
 })
 export class AppModule { }

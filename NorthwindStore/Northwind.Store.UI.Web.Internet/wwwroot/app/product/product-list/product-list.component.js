@@ -28,8 +28,7 @@ var ProductListComponent = (function () {
     ProductListComponent.prototype.trackByProduct = function (index, p) { return p.productId; };
     ProductListComponent = __decorate([
         core_1.Component({
-            templateUrl: './product-list.component.html',
-            providers: [product_service_1.ProductService]
+            templateUrl: './product-list.component.html'
         }),
         __metadata("design:paramtypes", [product_service_1.ProductService, router_1.ActivatedRoute, router_1.Router])
     ], ProductListComponent);
