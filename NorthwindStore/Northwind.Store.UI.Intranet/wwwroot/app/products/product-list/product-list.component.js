@@ -27,6 +27,7 @@ var ProductListComponent = (function () {
         this.ps = ps;
         this.ts = ts;
         this.numeroDePaginas = [];
+        this.asc = true;
         //paginaSeleccionadaActual: number = 1;
         //columna: string = "productId";
         //ordenamiento: string = "asc";
@@ -139,7 +140,15 @@ var ProductListComponent = (function () {
     };
     ProductListComponent.prototype.ordernar = function (columna) {
         this.paginacion.columna = columna;
-        this.paginacion.ordenamiento = 'asc';
+        console.log(this.asc);
+        if (this.asc == true) {
+            this.asc = false;
+            this.paginacion.ordenamiento = 'asc';
+        }
+        else {
+            this.asc = true;
+            this.paginacion.ordenamiento = 'des';
+        }
         this.searchTerms.next(this.paginacion);
     };
     ProductListComponent = __decorate([

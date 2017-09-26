@@ -35,13 +35,14 @@ export class ProductListComponent implements OnInit {
     saveSuccess: boolean;
     saveError: boolean;
     numeroDePaginas: any[] = [];
+    asc: boolean = true;
     //paginaSeleccionadaActual: number = 1;
     //columna: string = "productId";
     //ordenamiento: string = "asc";
 
     paginacion: Paginacion = new Paginacion();
     private searchTerms = new BehaviorSubject(this.paginacion);
-    constructor(private route: ActivatedRoute, private ps: ProductService,private ts: ToastService) { }
+    constructor(private route: ActivatedRoute, private ps: ProductService, private ts: ToastService) { }
 
 
     ngOnInit(): void {
@@ -66,7 +67,7 @@ export class ProductListComponent implements OnInit {
 
         this.respuesta.subscribe(v => {
             this.products = v.valorRetorno;
-           
+
             this.numeroDePaginas = [];
             for (let i = 1; i <= Math.round(v.totalPaginas); i++) {
                 this.numeroDePaginas.push({ pageNumber: i, isSelected: i == 1 ? true : false });
@@ -167,7 +168,15 @@ export class ProductListComponent implements OnInit {
 
     ordernar(columna: string) {
         this.paginacion.columna = columna;
-        this.paginacion.ordenamiento = 'asc';
+        console.log(this.asc);
+        if (this.asc == true) {
+            this.asc = false;
+            this.paginacion.ordenamiento = 'asc';
+        } else {
+            this.asc = true;
+            this.paginacion.ordenamiento = 'des';
+        }
+
         this.searchTerms.next(this.paginacion);
     }
 }

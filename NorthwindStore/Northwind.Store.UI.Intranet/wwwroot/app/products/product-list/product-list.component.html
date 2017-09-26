@@ -1,70 +1,93 @@
 ﻿<h3>Products</h3>
+
 <div class="container">
-    <div class="alert alert-success" *ngIf="saveSuccess">
-        <strong>Se elimino el registro</strong>
-    </div>
-    <div class="alert alert-danger" *ngIf="saveError">
-        <strong>{{errorMessage}}</strong>
-    </div>
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading text-center "><h1>Detalle de Productos</h1></div>
+            <div class="panel-body " style="background-color: aliceblue ">
+                <div class="panel-group">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading ">Detalle de Productos</div>
+                        <div class="panel-body">
+                            <div class="alert alert-success" *ngIf="saveSuccess">
+                                <strong>Se elimino el registro</strong>
+                            </div>
+                            <div class="alert alert-danger" *ngIf="saveError">
+                                <strong>{{errorMessage}}</strong>
+                            </div>
 
-    <div class="panel panel-default">
-        <button class="btn btn-info" routerLink="/products">
-            <span class=" glyphicon glyphicon-floppy-disk">
-            </span>Products1
-        </button>
-        <button class="btn btn-info" routerLink="/products/create" [queryParams]="{filterBy: filter}">
-            <span class=" glyphicon glyphicon-new-window"></span>Create
-        </button>
-        <button type="button" class="btn btn-info" (click)="obtenerTodos()">
-            <span class="glyphicon glyphicon-th-list"></span> Obtener Todos
-        </button>
-        <div class="row">
-            <input #searchBox id="search-box" [(ngModel)]="paginacion.filtro" (keyup)="search()" />
-        </div>
-    </div>
-
-    <div class="panel panel-default">
-        <div class="col-md-12">
-            <div class="panel panel-primary">
-                <div class="panel-heading">Products</div>
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID <span class="glyphicon glyphicon-download-alt" (click)="ordernar('productId')"></span></th>
-                            <th>Name<span class="glyphicon glyphicon-download-alt" (click)="ordernar('productName')"></span></th>
-                            <th>Category</th>
-                            <th>Supplier</th>
-                            <th>quantityPerUnit<span class="glyphicon glyphicon-download-alt" (click)="ordernar('quantityPerUnit')"></span></th>
-                            <th>Price<span class="glyphicon glyphicon-download-alt" (click)="ordernar('unitPrice')"></span></th>
-                            <th>Inventory<span class="glyphicon glyphicon-download-alt" (click)="ordernar('unitsInStock')"></span></th>
-                            <th>Details</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let p of products">
-                            <td>{{p.productId}}</td>
-                            <td>{{p.productName}}</td>
-                            <td>{{p.categoryName}}</td>
-                            <td>{{p.supplierName}}</td>
-                            <td>{{p.quantityPerUnit}}</td>
-                            <td>{{p.unitPrice | currency:'USD':true}}</td>
-                            <td>{{p.unitsInStock}}</td>
-                            <td>
-                                <button class="btn btn-info" [routerLink]="['/products', p.productId]" [queryParams]="{filterBy: filter}"><span class="glyphicon glyphicon-expand"></span>Details</button>
-                            </td>
-                            <td>
-                                <button class="btn btn-info" (click)="delete1(p.productId)"><span class=" glyphicon glyphicon-remove"></span>Delete</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <ul class="pagination" *ngFor="let contador of numeroDePaginas">
-                    <li (click)="seleccionarPagina($event)" [class]="paginaSeleccionadaActual == contador.pageNumber ? 'active' : ''" style="cursor:pointer;">
-                        <a>{{contador.pageNumber}}</a>
-                    </li>
-                </ul>
+                            <!--<div class="panel panel-default">-->
+                            <button class="btn btn-info" routerLink="/products">
+                                <span class=" glyphicon glyphicon-floppy-disk">
+                                </span>Products1
+                            </button>
+                            <button class="btn btn-info" routerLink="/products/create" [queryParams]="{filterBy: filter}">
+                                <span class=" glyphicon glyphicon-new-window"></span>Create
+                            </button>
+                            <button type="button" class="btn btn-info" (click)="obtenerTodos()">
+                                <span class="glyphicon glyphicon-th-list"></span> Obtener Todos
+                            </button>
+                            <div class="row">
+                                <input #searchBox id="search-box" [(ngModel)]="paginacion.filtro" (keyup)="search()" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-group">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading ">Detalle de Productos</div>
+                        <div class="panel-body">
+                            <div class="panel-group">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading"></div>
+                                    <div class="panel-body">
+                                        <div class="col-xs-12">
+                                            <table class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID <span class="glyphicon glyphicon-download-alt" (click)="ordernar('productId')"></span></th>
+                                                        <th>Name<span class="glyphicon glyphicon-download-alt" (click)="ordernar('productName')"></span></th>
+                                                        <th>Category</th>
+                                                        <th>Supplier</th>
+                                                        <th>quantityPerUnit<span class="glyphicon glyphicon-download-alt" (click)="ordernar('quantityPerUnit')"></span></th>
+                                                        <th>Price<span class="glyphicon glyphicon-download-alt" (click)="ordernar('unitPrice')"></span></th>
+                                                        <th>Inventory<span class="glyphicon glyphicon-download-alt" (click)="ordernar('unitsInStock')"></span></th>
+                                                        <th>Details</th>
+                                                        <th>Delete</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let p of products">
+                                                        <td>{{p.productId}}</td>
+                                                        <td>{{p.productName}}</td>
+                                                        <td>{{p.categoryName}}</td>
+                                                        <td>{{p.supplierName}}</td>
+                                                        <td>{{p.quantityPerUnit}}</td>
+                                                        <td>{{p.unitPrice | currency:'USD':true}}</td>
+                                                        <td>{{p.unitsInStock}}</td>
+                                                        <td>
+                                                            <button class="btn btn-info" [routerLink]="['/products', p.productId]" [queryParams]="{filterBy: filter}"><span class="glyphicon glyphicon-expand"></span>Details</button>
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn btn-info" (click)="delete1(p.productId)"><span class=" glyphicon glyphicon-remove"></span>Delete</button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <ul class="pagination" *ngFor="let contador of numeroDePaginas">
+                                                <li (click)="seleccionarPagina($event)" [class]="paginaSeleccionadaActual == contador.pageNumber ? 'active' : ''" style="cursor:pointer;">
+                                                    <a>{{contador.pageNumber}}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
