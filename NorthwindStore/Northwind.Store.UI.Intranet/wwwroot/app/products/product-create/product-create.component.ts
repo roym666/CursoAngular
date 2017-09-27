@@ -22,6 +22,7 @@ import { Category } from '../../categories/ICategory';
 
 import { SupplierService } from '../../suppliers/supplier.service';
 import { Supplier } from '../../suppliers/ISupplier';
+import { ModalService } from '../../shared/modal/modal.service';
 
 @Component({
     templateUrl: './product-create.component.html',
@@ -36,7 +37,7 @@ export class ProductCreateComponent implements OnInit {
     errorMessage: string;
     suppliers: Observable<Supplier[]>;
     categories: Observable<Category[]>;
-    constructor(private route: ActivatedRoute, private router: Router, private fb: FormBuilder, private ps: ProductService, private cs: CategoryService, private ss: SupplierService) { }
+    constructor(private route: ActivatedRoute, private router: Router, private fb: FormBuilder, private ps: ProductService, private cs: CategoryService, private ss: SupplierService, private modal: ModalService) { }
 
     ngOnInit(): void {
         this.saveError = false;
@@ -125,12 +126,15 @@ export class ProductCreateComponent implements OnInit {
                 this.product = product;
                 console.log(this.product);
                 console.log('Successfully create!');
+                this.modal.activate('Successfully created!');
             },
             error => {
                 this.errorMessage = <any>error;
                 this.saveError = true;
                 this.saveSuccess = false;
+                this.modal.activate(this.errorMessage);
             });
+
     }
 
 

@@ -10,6 +10,7 @@ using Northwind.Store.Model;
 using Linq.Extensions;
 using Northwind.Store.Service.DTO;
 using Northwind.Store.Service.Models;
+using System.Net;
 
 namespace Northwind.Store.Service.Controllers
 {
@@ -164,16 +165,23 @@ namespace Northwind.Store.Service.Controllers
             //    return BadRequest(ModelState);
             //}
 
-            var products = await _context.Products.SingleOrDefaultAsync(m => m.ProductId == id);
-            if (products == null)
+            try
             {
-                return NotFound(new ApiResponse(System.Net.HttpStatusCode.NotFound, $"product not found with id {id}"));
+                var products = await _context.Products.SingleOrDefaultAsync(m => m.ProductId == id);
+                if (products == null)
+                {
+                    return NotFound(new ApiResponse(System.Net.HttpStatusCode.NotFound, $"product not found with id {id}"));
+                }
+
+                _context.Products.Remove(products);
+                await _context.SaveChangesAsync();
+
+                return Ok(products);
             }
-
-            _context.Products.Remove(products);
-            await _context.SaveChangesAsync();
-
-            return Ok(products);
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, $"Delete error: {ex.Message}");
+            }
         }
 
         /// <summary>

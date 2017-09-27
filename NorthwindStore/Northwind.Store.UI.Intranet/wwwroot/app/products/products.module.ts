@@ -39,7 +39,8 @@ const routes: Routes = [
             },
             {
                 path: ':id/edit',
-                component: ProductEditComponent
+                component: ProductEditComponent,
+                resolve: { product: ProductResolver }
             }
         ]
     }

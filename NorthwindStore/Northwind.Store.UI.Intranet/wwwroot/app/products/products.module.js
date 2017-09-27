@@ -43,7 +43,8 @@ var routes = [
             },
             {
                 path: ':id/edit',
-                component: product_edit_component_1.ProductEditComponent
+                component: product_edit_component_1.ProductEditComponent,
+                resolve: { product: product_resolver_service_1.ProductResolver }
             }
         ]
     }

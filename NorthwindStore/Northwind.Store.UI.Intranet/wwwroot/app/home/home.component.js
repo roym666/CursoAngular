@@ -16,7 +16,7 @@ var HomeComponent = (function () {
         this.modal = modal;
     }
     HomeComponent.prototype.ngOnInit = function () {
-        this.modal.activate('app is ready');
+        // this.modal.activate('app is ready');
     };
     HomeComponent = __decorate([
         core_1.Component({

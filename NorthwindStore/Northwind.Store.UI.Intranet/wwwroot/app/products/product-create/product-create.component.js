@@ -21,14 +21,16 @@ require("rxjs/add/operator/switchMap");
 require("rxjs/add/operator/catch");
 var category_service_1 = require("../../categories/category.service");
 var supplier_service_1 = require("../../suppliers/supplier.service");
+var modal_service_1 = require("../../shared/modal/modal.service");
 var ProductCreateComponent = (function () {
-    function ProductCreateComponent(route, router, fb, ps, cs, ss) {
+    function ProductCreateComponent(route, router, fb, ps, cs, ss, modal) {
         this.route = route;
         this.router = router;
         this.fb = fb;
         this.ps = ps;
         this.cs = cs;
         this.ss = ss;
+        this.modal = modal;
         this.product = new IProduct_1.Product();
     }
     ProductCreateComponent.prototype.ngOnInit = function () {
@@ -111,10 +113,12 @@ var ProductCreateComponent = (function () {
             _this.product = product;
             console.log(_this.product);
             console.log('Successfully create!');
+            _this.modal.activate('Successfully created!');
         }, function (error) {
             _this.errorMessage = error;
             _this.saveError = true;
             _this.saveSuccess = false;
+            _this.modal.activate(_this.errorMessage);
         });
     };
     ProductCreateComponent.prototype.onBack = function () {
@@ -126,7 +130,7 @@ var ProductCreateComponent = (function () {
             templateUrl: './product-create.component.html',
             providers: [product_service_1.ProductService]
         }),
-        __metadata("design:paramtypes", [router_1.ActivatedRoute, router_1.Router, forms_1.FormBuilder, product_service_1.ProductService, category_service_1.CategoryService, supplier_service_1.SupplierService])
+        __metadata("design:paramtypes", [router_1.ActivatedRoute, router_1.Router, forms_1.FormBuilder, product_service_1.ProductService, category_service_1.CategoryService, supplier_service_1.SupplierService, modal_service_1.ModalService])
     ], ProductCreateComponent);
     return ProductCreateComponent;
 }());

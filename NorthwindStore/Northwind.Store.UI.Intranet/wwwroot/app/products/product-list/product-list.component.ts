@@ -20,6 +20,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Paginacion } from '../../shared/paginacion.model';
 
 import { ToastService } from '../../shared/toast/toast.service';
+import { ModalService } from '../../shared/modal/modal.service';
 
 @Component({
     templateUrl: `./product-list.component.html`,
@@ -28,7 +29,7 @@ import { ToastService } from '../../shared/toast/toast.service';
 export class ProductListComponent implements OnInit {
     products: Product[];
 
-    filter: string;
+    //filter: string;
     product: Product;
     respuesta: Observable<Respuesta>;
     errorMessage: string;
@@ -42,7 +43,7 @@ export class ProductListComponent implements OnInit {
 
     paginacion: Paginacion = new Paginacion();
     private searchTerms = new BehaviorSubject(this.paginacion);
-    constructor(private route: ActivatedRoute, private ps: ProductService, private ts: ToastService) { }
+    constructor(private route: ActivatedRoute, private ps: ProductService, private ts: ToastService, private modal: ModalService) { }
 
 
     ngOnInit(): void {
@@ -52,7 +53,7 @@ export class ProductListComponent implements OnInit {
         this.paginacion.ordenamiento = 'asc';
         this.paginacion.paginaSeleccionadaActual = 1;
 
-        this.filter = this.route.snapshot.queryParams['filterBy'] || '';
+        this.paginacion.filtro = this.route.snapshot.queryParams['filterBy'] || '';
 
         this.saveSuccess = false;
         this.saveError = false;
@@ -134,12 +135,14 @@ export class ProductListComponent implements OnInit {
                 this.saveSuccess = true;
                 this.saveError = false;
                 console.log('Successfully deleted!');
+                this.modal.activate('Successfully deleted!');
                 this.search();
             },
             error => {
                 this.errorMessage = <any>error
                 this.saveSuccess = false;
                 this.saveError = true;
+                this.modal.activate(this.errorMessage);
             });
     }
 
@@ -174,7 +177,7 @@ export class ProductListComponent implements OnInit {
             this.paginacion.ordenamiento = 'asc';
         } else {
             this.asc = true;
-            this.paginacion.ordenamiento = 'des';
+            this.paginacion.ordenamiento = 'desc';
         }
 
         this.searchTerms.next(this.paginacion);

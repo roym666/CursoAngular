@@ -9,6 +9,6 @@ export class HomeComponent implements OnInit {
     constructor(private modal: ModalService) { }
 
     ngOnInit(): void {
-        this.modal.activate('app is ready');
+       // this.modal.activate('app is ready');
     }
 }

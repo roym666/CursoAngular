@@ -21,11 +21,13 @@ require("rxjs/add/operator/switchMap");
 require("rxjs/add/operator/catch");
 var paginacion_model_1 = require("../../shared/paginacion.model");
 var toast_service_1 = require("../../shared/toast/toast.service");
+var modal_service_1 = require("../../shared/modal/modal.service");
 var ProductListComponent = (function () {
-    function ProductListComponent(route, ps, ts) {
+    function ProductListComponent(route, ps, ts, modal) {
         this.route = route;
         this.ps = ps;
         this.ts = ts;
+        this.modal = modal;
         this.numeroDePaginas = [];
         this.asc = true;
         //paginaSeleccionadaActual: number = 1;
@@ -41,7 +43,7 @@ var ProductListComponent = (function () {
         this.paginacion.filtro = '';
         this.paginacion.ordenamiento = 'asc';
         this.paginacion.paginaSeleccionadaActual = 1;
-        this.filter = this.route.snapshot.queryParams['filterBy'] || '';
+        this.paginacion.filtro = this.route.snapshot.queryParams['filterBy'] || '';
         this.saveSuccess = false;
         this.saveError = false;
         // Requiere el pipe async
@@ -113,11 +115,13 @@ var ProductListComponent = (function () {
             _this.saveSuccess = true;
             _this.saveError = false;
             console.log('Successfully deleted!');
+            _this.modal.activate('Successfully deleted!');
             _this.search();
         }, function (error) {
             _this.errorMessage = error;
             _this.saveSuccess = false;
             _this.saveError = true;
+            _this.modal.activate(_this.errorMessage);
         });
     };
     //obtenerTodos(): void {
@@ -147,7 +151,7 @@ var ProductListComponent = (function () {
         }
         else {
             this.asc = true;
-            this.paginacion.ordenamiento = 'des';
+            this.paginacion.ordenamiento = 'desc';
         }
         this.searchTerms.next(this.paginacion);
     };
@@ -156,7 +160,7 @@ var ProductListComponent = (function () {
             templateUrl: "./product-list.component.html",
             providers: [product_service_1.ProductService, toast_service_1.ToastService]
         }),
-        __metadata("design:paramtypes", [router_1.ActivatedRoute, product_service_1.ProductService, toast_service_1.ToastService])
+        __metadata("design:paramtypes", [router_1.ActivatedRoute, product_service_1.ProductService, toast_service_1.ToastService, modal_service_1.ModalService])
     ], ProductListComponent);
     return ProductListComponent;
 }());
