@@ -37,7 +37,7 @@
                                     <label class="col-md-2 control-label"
                                            for="SupplierID">Supplier</label>
                                     <div class="col-md-8">
-                                        <select class="form-control" required [(ngModel)]="product.supplierId"
+                                        <select class="form-control" required
                                                 formControlName="supplierId" id="supplierId">
                                             <option *ngFor="let supplier of suppliers  | async" [ngValue]="supplier.supplierId">
                                                 {{supplier.companyName}}
@@ -106,7 +106,7 @@
                                     <label class="col-md-2 control-label"
                                            for="CategoryID">Category</label>
                                     <div class="col-md-8">
-                                        <select class="form-control" id="categoryId" formControlName="categoryId" required [(ngModel)]="product.categoryId">
+                                        <select class="form-control" id="categoryId" formControlName="categoryId" required>
                                             <option *ngFor="let category of categories  | async" [ngValue]="category.categoryId">
                                                 {{category.categoryName}}
                                             </option>
