@@ -20,7 +20,9 @@ var ProductListComponent = (function () {
     }
     ProductListComponent.prototype.ngOnInit = function () {
         this.filter = this.route.snapshot.queryParams['filterBy'] || '';
-        this.products = this.ps.searchProducts(this.filter);
+        if (this.filter !== '') {
+            this.products = this.ps.searchProducts(this.filter);
+        }
     };
     ProductListComponent.prototype.onSearchKey = function (event) {
         if (event.keyCode == 13) {

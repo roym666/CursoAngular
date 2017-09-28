@@ -15,10 +15,12 @@ var page_not_found_1 = require("./shared/page-not-found");
 var login_guard_service_1 = require("./shared/login-guard.service");
 var toast_module_1 = require("./shared/toast/toast.module");
 var modal_module_1 = require("./shared/modal/modal.module");
+var user_module_1 = require("./user/user.module");
+var auth_guard_service_1 = require("./user/auth-guard.service");
 var routes = [
     { path: 'home', component: home_component_1.HomeComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'products', loadChildren: './app/products/products.module#ProductsModule', canActivate: [login_guard_service_1.LoginGuard], canLoad: [login_guard_service_1.LoginGuard] },
+    { path: 'products', loadChildren: './app/products/products.module#ProductsModule', canActivate: [auth_guard_service_1.AuthGuard], canLoad: [auth_guard_service_1.AuthGuard] },
     { path: '**', pathMatch: 'full', component: page_not_found_1.PageNotFoundComponent },
 ];
 var AppModule = (function () {
@@ -26,7 +28,7 @@ var AppModule = (function () {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, router_1.RouterModule.forRoot(routes, { enableTracing: true, preloadingStrategy: router_1.PreloadAllModules }), toast_module_1.ToastModule, modal_module_1.ModalModule],
+            imports: [platform_browser_1.BrowserModule, router_1.RouterModule.forRoot(routes, { enableTracing: true, preloadingStrategy: router_1.PreloadAllModules }), toast_module_1.ToastModule, modal_module_1.ModalModule, user_module_1.UserModule],
             declarations: [app_component_1.AppComponent, home_component_1.HomeComponent, page_not_found_1.PageNotFoundComponent],
             bootstrap: [app_component_1.AppComponent], providers: [login_guard_service_1.LoginGuard]
         })

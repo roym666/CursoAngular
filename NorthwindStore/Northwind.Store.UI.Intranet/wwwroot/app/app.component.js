@@ -11,9 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var auth_service_1 = require("./user/auth.service");
 var AppComponent = (function () {
-    function AppComponent(router) {
+    function AppComponent(authService, router) {
         var _this = this;
+        this.authService = authService;
         this.router = router;
         this.router.events.subscribe(function (routerEvent) {
             if (routerEvent instanceof router_1.NavigationStart) {
@@ -35,7 +37,7 @@ var AppComponent = (function () {
             selector: 'my-app',
             templateUrl: './app.component.html',
         }),
-        __metadata("design:paramtypes", [router_1.Router])
+        __metadata("design:paramtypes", [auth_service_1.AuthService, router_1.Router])
     ], AppComponent);
     return AppComponent;
 }());

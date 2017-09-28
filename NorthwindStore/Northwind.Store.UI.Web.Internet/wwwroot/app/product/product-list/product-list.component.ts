@@ -19,7 +19,10 @@ export class ProductListComponent implements OnInit {
 
     ngOnInit(): void {
         this.filter = this.route.snapshot.queryParams['filterBy'] || '';
-        this.products = this.ps.searchProducts(this.filter);
+        if (this.filter !== '') {
+            this.products = this.ps.searchProducts(this.filter);
+        }
+        
     }
 
     onSearchKey(event: KeyboardEvent): void {

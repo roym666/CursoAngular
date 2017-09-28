@@ -41,6 +41,16 @@
     <None Include="wwwroot\app\shared\toast\toast.module.js.map" />
     <None Include="wwwroot\app\shared\toast\toast.service.js" />
     <None Include="wwwroot\app\shared\toast\toast.service.js.map" />
+    <None Include="wwwroot\app\user\auth-guard.service.js" />
+    <None Include="wwwroot\app\user\auth-guard.service.js.map" />
+    <None Include="wwwroot\app\user\auth.service.js" />
+    <None Include="wwwroot\app\user\auth.service.js.map" />
+    <None Include="wwwroot\app\user\login.component.js" />
+    <None Include="wwwroot\app\user\login.component.js.map" />
+    <None Include="wwwroot\app\user\user.js" />
+    <None Include="wwwroot\app\user\user.js.map" />
+    <None Include="wwwroot\app\user\user.module.js" />
+    <None Include="wwwroot\app\user\user.module.js.map" />
   </ItemGroup>
 
   <ItemGroup>
@@ -55,6 +65,11 @@
     <TypeScriptCompile Include="wwwroot\app\shared\toast\toast.service.ts" />
     <TypeScriptCompile Include="wwwroot\app\suppliers\supplier.service.ts" />
     <TypeScriptCompile Include="wwwroot\app\suppliers\ISupplier.ts" />
+    <TypeScriptCompile Include="wwwroot\app\user\auth-guard.service.ts" />
+    <TypeScriptCompile Include="wwwroot\app\user\auth.service.ts" />
+    <TypeScriptCompile Include="wwwroot\app\user\login.component.ts" />
+    <TypeScriptCompile Include="wwwroot\app\user\user.module.ts" />
+    <TypeScriptCompile Include="wwwroot\app\user\user.ts" />
   </ItemGroup>
 
 </Project>

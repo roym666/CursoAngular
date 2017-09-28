@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, Event, NavigationStart, NavigationEnd, NavigationError, NavigationCancel } from '@angular/router';
 
+import { AuthService } from './user/auth.service';
 @Component({
     selector: 'my-app',
     templateUrl: './app.component.html',
@@ -8,7 +9,7 @@ import { Router, Event, NavigationStart, NavigationEnd, NavigationError, Navigat
 export class AppComponent {
     loading: boolean;
 
-    constructor(private router: Router) {
+    constructor(private authService:AuthService, private router: Router) {
         this.router.events.subscribe((routerEvent: Event) => {
             if (routerEvent instanceof NavigationStart) {
                 this.loading = true;
