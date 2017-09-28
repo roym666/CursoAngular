@@ -1,7 +1,16 @@
-﻿<h2>{{header}}</h2>
+﻿<h2>Cart</h2>
 <div class="row">
-    <div class="col-md-12">
-        <label>Carrito:</label>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Product</div>
+        <div class="panel-body">
+            <ul>
+                <li *ngFor="let p of products">
+                    {{p.productName}}<br />
+                    {{p.unitPrice | currency:'USD':true}}<br />                                     
+                </li>
+            </ul>
+        </div>
     </div>
+    <button class="btn btn-info" [routerLink]="['/product']" queryParamsHandling="preserve"><span class="glyphicon glyphicon-th-list"></span>Continue shopping</button>    
 </div>
 

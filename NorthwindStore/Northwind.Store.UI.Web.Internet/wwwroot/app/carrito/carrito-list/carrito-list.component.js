@@ -19,8 +19,7 @@ var CarritoListComponent = (function () {
         this.cs = cs;
     }
     CarritoListComponent.prototype.ngOnInit = function () {
-        console.log('desde lista carrito');
-        console.log(this.cs.listarCarrito());
+        this.products = this.cs.listarCarrito();
     };
     CarritoListComponent = __decorate([
         core_1.Component({

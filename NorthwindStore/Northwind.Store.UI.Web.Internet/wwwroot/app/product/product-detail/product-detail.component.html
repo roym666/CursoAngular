@@ -1,5 +1,4 @@
 ﻿<h3>Detail</h3>
-<a class="btn btn-primary" [routerLink]="['extra']">Country Ranking</a>
 <div class="panel panel-primary">
     <div class="panel-heading">Product</div>
     <div class="panel-body">
@@ -26,5 +25,6 @@
             <dt>{{product.category.categoryName}}</dt>
         </dl>
     </div>
-    <button class="btn btn-info" [routerLink]="['/carrito', product.productId,'add']"><span class="glyphicon glyphicon-save"></span>Agregar</button>
+    <button class="btn btn-info" [routerLink]="['/carrito', product.productId,'add']"><span class="glyphicon glyphicon-plus"></span>Add</button>
+    <button class="btn btn-info" [routerLink]="['/product']" queryParamsHandling="preserve"><span class="glyphicon glyphicon-arrow-left"></span>Back</button>    
 </div>

@@ -2,16 +2,18 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Observable } from 'rxjs/Observable';
 import { CarritoService } from '../carrito.service';
+import { Product } from '../../product/product.model';
+
 @Component({
     templateUrl: './carrito-list.component.html'
 })
 export class CarritoListComponent implements OnInit {
+
+    products: Product[];
     constructor(private route: ActivatedRoute, private router: Router, private cs: CarritoService) { }
 
-    ngOnInit(): void {
-        console.log('desde lista carrito');
-        console.log(this.cs.listarCarrito());
+    ngOnInit(): void {                          
+        this.products = this.cs.listarCarrito() 
     }
 }

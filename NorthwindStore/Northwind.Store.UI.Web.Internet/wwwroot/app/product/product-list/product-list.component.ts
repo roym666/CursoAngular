@@ -18,7 +18,8 @@ export class ProductListComponent implements OnInit {
     constructor(private ps: ProductService, private route: ActivatedRoute, private router: Router) { }
 
     ngOnInit(): void {
-
+        this.filter = this.route.snapshot.queryParams['filterBy'] || '';
+        this.products = this.ps.searchProducts(this.filter);
     }
 
     onSearchKey(event: KeyboardEvent): void {

@@ -19,6 +19,8 @@ var ProductListComponent = (function () {
         this.router = router;
     }
     ProductListComponent.prototype.ngOnInit = function () {
+        this.filter = this.route.snapshot.queryParams['filterBy'] || '';
+        this.products = this.ps.searchProducts(this.filter);
     };
     ProductListComponent.prototype.onSearchKey = function (event) {
         if (event.keyCode == 13) {
