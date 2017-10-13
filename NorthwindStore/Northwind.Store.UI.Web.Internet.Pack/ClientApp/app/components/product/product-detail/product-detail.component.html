@@ -1,0 +1,30 @@
+﻿<h3>Detail</h3>
+<div class="panel panel-primary">
+    <div class="panel-heading">Product</div>
+    <div class="panel-body">
+        <dl>
+            <dd>Id</dd>
+            <dt>{{product.productId}}</dt>
+            <dd>Name</dd>
+            <dt>{{product.productName}}</dt>
+            <dd>Quantity Per Unit</dd>
+            <dt>{{product.quantityPerUnit}}</dt>
+            <dd>Unit Price</dd>
+            <dt>{{product.unitPrice}}</dt>
+            <dd>Units In Stock</dd>
+            <dt>{{product.unitsInStock}}</dt>
+            <dd>Units On Order</dd>
+            <dt>{{product.unitsOnOrder}}</dt>
+            <dd>Reorder Level</dd>
+            <dt>{{product.reorderLevel}}</dt>
+            <dd>Discontinued</dd>
+            <dt>{{product.discontinued}}</dt>
+            <dd>Supplier</dd>
+            <dt>{{product.supplierName}}</dt>
+            <dd>Category</dd>
+            <dt>{{product.categoryName}}</dt>
+        </dl>
+    </div>
+    <button class="btn btn-info" [routerLink]="['/carrito', product.productId,'add']"><span class="glyphicon glyphicon-plus"></span>Add</button>
+    <button class="btn btn-info" [routerLink]="['/product']" queryParamsHandling="preserve"><span class="glyphicon glyphicon-arrow-left"></span>Back</button>    
+</div>

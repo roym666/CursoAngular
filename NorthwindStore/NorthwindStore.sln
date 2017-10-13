@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.10
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.Store.Service", "Northwind.Store.Service\Northwind.Store.Service.csproj", "{D8FCC0FF-0119-47F7-8B0F-2D751389B18F}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.Store.UI.Intranet", "Northwind.Store.UI.Intranet\Northwind.Store.UI.Intranet.csproj", "{35F983A2-DD13-40FC-B2C7-3C8B001D96AD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.Store.UI.Web.Internet", "Northwind.Store.UI.Web.Internet\Northwind.Store.UI.Web.Internet.csproj", "{F12B58BD-9BBC-4443-A883-34AE7802481A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Store.UI.Web.Internet.Pack", "Northwind.Store.UI.Web.Internet.Pack\Northwind.Store.UI.Web.Internet.Pack.csproj", "{6E04AD14-B878-4628-ADBC-4A02C3C2156E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{F12B58BD-9BBC-4443-A883-34AE7802481A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F12B58BD-9BBC-4443-A883-34AE7802481A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F12B58BD-9BBC-4443-A883-34AE7802481A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E04AD14-B878-4628-ADBC-4A02C3C2156E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E04AD14-B878-4628-ADBC-4A02C3C2156E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E04AD14-B878-4628-ADBC-4A02C3C2156E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E04AD14-B878-4628-ADBC-4A02C3C2156E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

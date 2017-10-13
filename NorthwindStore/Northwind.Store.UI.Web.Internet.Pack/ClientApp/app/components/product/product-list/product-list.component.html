@@ -1,0 +1,25 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <label for="iFilter">Search product:</label>
+        <input type="search" [(ngModel)]="filter" id="iFilter" (keyup)="onSearchKey($event)" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Product</div>
+            <div class="panel-body">
+                <ul>
+                    <li *ngFor="let p of products | async; trackBy: trackByProduct">
+                        {{p.productName}}<br />                       
+                        {{p.unitPrice | currency:'USD':true}}<br />                      
+                        {{p.categoryName}}<br />
+                        {{p.supplierName}}<br />
+                        <button class="btn btn-info" [routerLink]="['/product', p.productId]" [queryParams]="{filterBy: filter}">
+                        <span class="glyphicon glyphicon-expand"></span>View Details</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

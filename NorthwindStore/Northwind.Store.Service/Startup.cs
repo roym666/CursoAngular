@@ -37,7 +37,7 @@ namespace Northwind.Store.Service
 
             services.AddCors(options => {
                 options.AddPolicy("CorsPolicyFree", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials());
-                options.AddPolicy("CorsPolicyHost", builder => builder.WithOrigins("https://localhost:44393").WithOrigins("https://localhost:1983").AllowAnyMethod().AllowAnyHeader());
+                options.AddPolicy("CorsPolicyHost", builder => builder.WithOrigins("https://localhost:44393").WithOrigins("https://localhost:1983").WithOrigins("https://localhost:44349").AllowAnyMethod().AllowAnyHeader());
             });
 
 
